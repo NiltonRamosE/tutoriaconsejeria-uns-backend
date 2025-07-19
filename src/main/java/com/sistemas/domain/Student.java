@@ -44,8 +44,8 @@ public class Student {
     @NotBlank(message = "El campo codigo de matricula no debe quedar vacío")
     private String studentCode;
 
-    @Column(length = 50, nullable = false, unique = true)
-    @Size(max = 50, message = "El correo institucional no puede tener más de 50 caracteres")
+    @Column(length = 20, nullable = false, unique = true)
+    @Size(max = 20, message = "El correo institucional no puede tener más de 20 caracteres")
     @NotBlank(message = "El campo correo institucional no debe quedar vacío")
     @Email(message = "El correo institucional debe tener un formato válido")
     private String institutionalEmail;

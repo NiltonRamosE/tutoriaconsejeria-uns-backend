@@ -119,6 +119,7 @@ public class Instructor {
         this.instructorDedication = instructorDedication;
         this.instructorDedicationCode = instructorDedication.getCode();
     }
+
     public Gender getGender(){
         return Gender.fromCode(genderCode);
     }

@@ -1,0 +1,32 @@
+package com.sistemas.controller;
+
+import com.sistemas.domain.Instructor;
+import com.sistemas.service.InstructorService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(path = "/instructor", produces = "application/json")
+public class InstructorController {
+
+    @Autowired
+    private InstructorService instructorService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @PostMapping("/create")
+    public ResponseEntity<Instructor> createInstructor(@Valid @RequestBody Instructor instructor) {
+
+        instructor.setPassword(passwordEncoder.encode(instructor.getPassword()));
+
+        Instructor savedInstructor = instructorService.create(instructor);
+        return ResponseEntity.ok(savedInstructor);
+    }
+}

@@ -1,6 +1,5 @@
 package com.sistemas.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -44,7 +43,6 @@ public class Administrator {
     @Email(message = "El correo institucional debe tener un formato válido")
     private String institutionalEmail;
 
-    @JsonIgnore
     @Column(length = 100, nullable = false)
     @NotBlank(message = "El campo contraseña no debe quedar vacío")
     private String password;

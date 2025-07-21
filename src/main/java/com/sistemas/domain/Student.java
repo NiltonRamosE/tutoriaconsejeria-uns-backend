@@ -72,7 +72,7 @@ public class Student {
     @NotBlank(message = "El campo celular no debe quedar vacío")
     private String cellphoneNumber;
 
-    @JsonIgnore
+
     @Column(length = 100, nullable = false)
     @NotBlank(message = "El campo contraseña no debe quedar vacío")
     private String password;

@@ -4,6 +4,8 @@ import com.sistemas.domain.Instructor;
 import com.sistemas.repository.InstructorRepository;
 import com.sistemas.service.InstructorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,12 @@ public class InstructorServiceImpl implements InstructorService {
 
     private final InstructorRepository instructorRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Instructor create(Instructor instructor) {
+        instructor.setPassword(passwordEncoder.encode(instructor.getPassword()));
         return instructorRepository.save(instructor);
     }
 

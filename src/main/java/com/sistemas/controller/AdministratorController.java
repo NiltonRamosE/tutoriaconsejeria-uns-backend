@@ -1,6 +1,8 @@
 package com.sistemas.controller;
 
+import com.sistemas.domain.AcademicAssignment;
 import com.sistemas.domain.Administrator;
+import com.sistemas.service.AcademicAssignmentService;
 import com.sistemas.service.AdministratorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping(path = "/administrator", produces = "application/json")
 public class AdministratorController {
@@ -17,10 +21,19 @@ public class AdministratorController {
     @Autowired
     private AdministratorService administratorService;
 
+    @Autowired
+    private AcademicAssignmentService academicAssignmentService;
 
     @PostMapping("/create")
     public ResponseEntity<Administrator> createAdministrator(@Valid @RequestBody Administrator administrator) {
         Administrator savedAdministrator = administratorService.create(administrator);
         return ResponseEntity.ok(savedAdministrator);
+    }
+
+    @PostMapping("/distributeStudentsAmongInstructors")
+    public ResponseEntity<Void> distributeStudentsAmongInstructors() {
+        academicAssignmentService.distributeStudentsAmongInstructors();
+
+        return ResponseEntity.ok().build();
     }
 }

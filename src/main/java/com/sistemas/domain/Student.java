@@ -1,6 +1,5 @@
 package com.sistemas.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sistemas.domain.vo.student.FamilyGroupInformation;
 import com.sistemas.domain.vo.student.PersonalProblems;
 import com.sistemas.domain.vo.student.SocioeconomicInformation;
@@ -8,14 +7,20 @@ import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "students")
 public class Student {
 
@@ -64,8 +69,7 @@ public class Student {
 
     @Past(message = "Ingrese una fecha válida")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(length = 9, nullable = false, unique = true, columnDefinition = "CHAR(9)")
     @Size(min = 9, max = 9, message = "El número de celular debe tener exactamente 9 caracteres")

@@ -3,6 +3,8 @@ package com.sistemas.controller;
 import com.sistemas.domain.AcademicAssignment;
 import com.sistemas.domain.Administrator;
 import com.sistemas.domain.Student;
+import com.sistemas.domain.TypeActivity;
+import com.sistemas.dto.assignment.AssignmentResponse;
 import com.sistemas.service.AcademicAssignmentService;
 import com.sistemas.service.AdministratorService;
 import com.sistemas.service.StudentService;
@@ -12,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/administrator", produces = "application/json")
@@ -102,8 +106,37 @@ public class AdministratorController {
     }
 
     @GetMapping("/assign/list")
-    public ResponseEntity<List<AcademicAssignment>> getAcademicAssignmentList() {
-        List<AcademicAssignment> academicAssignmentList = academicAssignmentService.listAll();
-        return new ResponseEntity<>(academicAssignmentList, HttpStatus.OK);
+    public ResponseEntity<List<AssignmentResponse>> getAcademicAssignmentList() {
+        List<AssignmentResponse> assignmentResponses = academicAssignmentService.listAll().stream()
+                .map(this::mapToAssignmentResponse)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(assignmentResponses, HttpStatus.OK);
+    }
+
+    private AssignmentResponse mapToAssignmentResponse(AcademicAssignment assignment) {
+        if (assignment == null || assignment.getStudent() == null || assignment.getInstructor() == null) {
+            return null;
+        }
+
+        return AssignmentResponse.builder()
+                .academicAssignmentId(assignment.getId())
+                .studentId(assignment.getStudent().getId())
+                .instructorId(assignment.getInstructor().getId())
+                .studentName(
+                        assignment.getStudent().getName() + " " +
+                                assignment.getStudent().getPaternalSurname() + " " +
+                                assignment.getStudent().getMaternalSurname()
+                )
+                .instructorName(
+                        assignment.getInstructor().getName() + " " +
+                                assignment.getInstructor().getPaternalSurname() + " " +
+                                assignment.getInstructor().getMaternalSurname()
+                )
+                .studentInstitutionalEmail(assignment.getStudent().getInstitutionalEmail())
+                .instructorInstitutionalEmail(assignment.getInstructor().getInstitutionalEmail())
+                .studentCode(assignment.getStudent().getStudentCode())
+                .typeActivity(TypeActivity.fromCode(assignment.getTypeActivityCode()).toString())
+                .build();
     }
 }

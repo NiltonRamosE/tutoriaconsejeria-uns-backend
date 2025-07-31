@@ -1,5 +1,6 @@
 package com.sistemas.service.implement;
 
+import com.sistemas.domain.InstitutionalEmailGenerator;
 import com.sistemas.domain.Instructor;
 import com.sistemas.repository.InstructorRepository;
 import com.sistemas.service.InstructorService;
@@ -22,28 +23,35 @@ public class InstructorServiceImpl implements InstructorService {
 
     @Override
     public Instructor create(Instructor instructor) {
+        String institutionalEmail = InstitutionalEmailGenerator.generateInstitutionalEmail(instructor.getName(), instructor.getPaternalSurname(), instructor.getMaternalSurname());
+        instructor.setInstitutionalEmail(institutionalEmail);
         instructor.setPassword(passwordEncoder.encode(instructor.getPassword()));
         return instructorRepository.save(instructor);
     }
 
     @Override
     public List<Instructor> listAll() {
-        return List.of();
+        return instructorRepository.findAll();
     }
 
     @Override
     public Instructor search(Long id) {
-        return null;
+        Instructor instructor = null;
+        Optional<Instructor> instructorWanted = instructorRepository.findById(id);
+        if (instructorWanted.isPresent()) {
+            instructor = instructorWanted.get();
+        }
+        return instructor;
     }
 
     @Override
     public Instructor update(Instructor instructor) {
-        return null;
+        return instructorRepository.save(instructor);
     }
 
     @Override
     public void delete(Long id) {
-
+        instructorRepository.deleteById(id);
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AcademicAssignmentService extends IGenericService<AcademicAssignment, Long> {
 
-    void distributeStudentsAmongTeachers();
+    void distributeStudentsAmongInstructors();
 
     long countStudentsByInstructorAndTypeActivity(Long instructorId, char typeActivityCode);
 

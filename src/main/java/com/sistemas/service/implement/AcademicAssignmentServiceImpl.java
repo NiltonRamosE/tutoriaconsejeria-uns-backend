@@ -70,7 +70,7 @@ public class AcademicAssignmentServiceImpl implements AcademicAssignmentService 
     }
 
     @Override
-    public void distributeStudentsAmongTeachers() {
+    public void distributeStudentsAmongInstructors() {
         List<Student> earlyStageTutored = studentService.getIrregularConditionStudentsEarlyStage();
         List<Student> lateStageTutored = studentService.getIrregularConditionStudentsLateStage();
         List<Student> earlyStageAdvised = studentService.getStudentsEarlyStage();

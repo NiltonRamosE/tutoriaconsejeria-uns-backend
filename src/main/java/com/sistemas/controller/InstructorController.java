@@ -17,7 +17,7 @@ public class InstructorController {
     @Autowired
     private InstructorService instructorService;
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<Instructor> createInstructor(@Valid @RequestBody Instructor instructor) {
         Instructor savedInstructor = instructorService.create(instructor);
         return ResponseEntity.ok(savedInstructor);

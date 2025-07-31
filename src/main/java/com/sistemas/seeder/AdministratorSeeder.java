@@ -9,14 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AdministratorSeeder {
     @Bean
-    CommandLineRunner initDatabase(AdministratorService administratorService) {
+    CommandLineRunner initAdministratorDatabase(AdministratorService administratorService) {
         return args -> {
             administratorService.create(Administrator.builder()
                     .name("NILTON")
                     .paternalSurname("RAMOS")
                     .maternalSurname("ENCARNACION")
                     .genderCode('M')
-                    .institutionalEmail("admin@uns.edu.pe")
                     .password("123456")
                     .build());
         };

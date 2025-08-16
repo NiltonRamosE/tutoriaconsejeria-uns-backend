@@ -4,10 +4,16 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "student_schedules")
 public class StudentSchedule {
 
@@ -35,6 +41,5 @@ public class StudentSchedule {
     @Column(nullable = false)
     @Min(value = 1, message = "La condición de matrícula debe ser al menos 1")
     @Max(value = 3, message = "La condición de matrícula debe ser como máximo 3")
-    @NotBlank(message = "El campo condición de matrícula no debe quedar vacío")
     private Integer registrationCondition;
 }

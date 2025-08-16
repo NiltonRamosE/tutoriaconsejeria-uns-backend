@@ -3,14 +3,11 @@ package com.sistemas.seeder;
 import com.sistemas.domain.Instructor;
 import com.sistemas.service.InstructorService;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
-
+@Component
 public class InstructorSeeder {
-    @Bean
-    CommandLineRunner initInstructorDatabase(InstructorService instructorService) {
+    CommandLineRunner initInstructorTable(InstructorService instructorService) {
         return args -> {
             instructorService.create(Instructor.builder()
                     .name("Luis Gonzalo")

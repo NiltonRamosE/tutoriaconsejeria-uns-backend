@@ -3,13 +3,11 @@ package com.sistemas.seeder;
 import com.sistemas.domain.Administrator;
 import com.sistemas.service.AdministratorService;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class AdministratorSeeder {
-    @Bean
-    CommandLineRunner initAdministratorDatabase(AdministratorService administratorService) {
+    CommandLineRunner initAdministratorTable(AdministratorService administratorService) {
         return args -> {
             administratorService.create(Administrator.builder()
                     .name("NILTON")

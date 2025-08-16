@@ -3,15 +3,13 @@ package com.sistemas.seeder;
 import com.sistemas.domain.Student;
 import com.sistemas.service.StudentService;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-@Configuration
+@Component
 public class StudentSeeder {
-    @Bean
-    CommandLineRunner initStudentDatabase(StudentService studentService) {
+    CommandLineRunner initStudentTable(StudentService studentService) {
         return args -> {
             studentService.create(Student.builder()
                     .name("Gabriel Luis")

@@ -44,4 +44,9 @@ public class AcademicScheduleServiceImpl implements AcademicScheduleService {
     public void delete(Long id) {
         academicScheduleRepository.deleteById(id);
     }
+
+    @Override
+    public List<AcademicSchedule> findByCycle(Integer cycle) {
+        return academicScheduleRepository.findByCycle(cycle);
+    }
 }

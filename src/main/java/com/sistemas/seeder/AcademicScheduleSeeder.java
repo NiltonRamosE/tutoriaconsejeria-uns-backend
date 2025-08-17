@@ -17,6 +17,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(11, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -25,6 +26,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(13, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -33,6 +35,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(9, 0))
                     .endTime(LocalTime.of(11, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -41,6 +44,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(15, 0))
                     .endTime(LocalTime.of(17, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -49,6 +53,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(10, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -57,6 +62,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(10, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -65,6 +71,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -73,6 +80,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -81,6 +89,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(10, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -89,6 +98,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -97,6 +107,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(18, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -105,6 +116,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -113,6 +125,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -121,6 +134,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -129,6 +143,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(10, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -137,6 +152,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(13, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -145,6 +161,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -153,6 +170,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(17, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -161,6 +179,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -169,6 +188,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(16, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -177,6 +197,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(16, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -185,6 +206,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -193,6 +215,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -201,6 +224,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -209,6 +233,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(17, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(2)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -217,6 +242,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -225,6 +251,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -233,6 +260,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(16, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -241,6 +269,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -249,6 +278,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -257,6 +287,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(17, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -265,6 +296,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -273,6 +305,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -281,6 +314,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -289,6 +323,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -297,6 +332,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -305,6 +341,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -313,6 +350,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -321,6 +359,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -329,6 +368,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(9, 0))
                     .endTime(LocalTime.of(13, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -337,6 +377,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(16, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -345,6 +386,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -353,6 +395,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -361,6 +404,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -369,6 +413,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(9, 0))
                     .endTime(LocalTime.of(11, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -377,6 +422,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -385,6 +431,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(4)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -393,6 +440,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -401,6 +449,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(9, 0))
                     .endTime(LocalTime.of(13, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -409,6 +458,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -417,6 +467,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -425,6 +476,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -433,6 +485,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -441,6 +494,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -449,6 +503,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -457,6 +512,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -465,6 +521,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -473,6 +530,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -481,6 +539,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(17, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -489,6 +548,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -497,6 +557,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -505,6 +566,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(18, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -513,6 +575,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(10, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -521,6 +584,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -529,6 +593,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -537,6 +602,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(17, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -545,6 +611,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -553,6 +620,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -561,6 +629,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(6)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -569,6 +638,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -577,6 +647,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(15, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -585,6 +656,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -593,6 +665,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -601,6 +674,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -609,6 +683,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(15, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -617,6 +692,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -625,6 +701,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -633,6 +710,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -641,6 +719,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(11, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -649,6 +728,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -657,6 +737,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(17, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -665,6 +746,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -673,6 +755,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(13, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -681,6 +764,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(15, 0))
                     .endTime(LocalTime.of(17, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -689,6 +773,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -697,6 +782,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -705,6 +791,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(17, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -713,6 +800,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(10, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -721,6 +809,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -729,6 +818,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -737,6 +827,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -745,6 +836,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -753,6 +845,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -761,6 +854,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(10, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -769,6 +863,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(8)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -777,6 +872,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -785,6 +881,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -793,6 +890,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -801,6 +899,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -809,6 +908,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -817,6 +917,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -825,6 +926,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -833,6 +935,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(16, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -841,6 +944,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -849,6 +953,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -857,6 +962,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -865,6 +971,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(15, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -873,6 +980,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -881,6 +989,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -889,6 +998,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -897,6 +1007,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(18, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -905,6 +1016,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -913,6 +1025,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(9, 0))
                     .endTime(LocalTime.of(11, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -921,6 +1034,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -929,6 +1043,7 @@ public class AcademicScheduleSeeder {
                     .day("MARTES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -937,6 +1052,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(11, 0))
                     .endTime(LocalTime.of(13, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -945,6 +1061,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(18, 0))
                     .endTime(LocalTime.of(20, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -953,6 +1070,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -961,6 +1079,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -969,6 +1088,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(9)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -977,6 +1097,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -985,6 +1106,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -993,6 +1115,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(17, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1001,6 +1124,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1009,6 +1133,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(15, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1017,6 +1142,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(14, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1025,6 +1151,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(11, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1033,6 +1160,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1041,6 +1169,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1049,6 +1178,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(16, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1057,6 +1187,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1065,6 +1196,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1073,6 +1205,7 @@ public class AcademicScheduleSeeder {
                     .day("SABADO")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1081,6 +1214,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(17, 0))
                     .endTime(LocalTime.of(19, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1089,6 +1223,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(12, 0))
                     .endTime(LocalTime.of(14, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1097,6 +1232,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1105,6 +1241,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(8, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1113,6 +1250,7 @@ public class AcademicScheduleSeeder {
                     .day("MIERCOLES")
                     .startTime(LocalTime.of(7, 0))
                     .endTime(LocalTime.of(9, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1121,6 +1259,7 @@ public class AcademicScheduleSeeder {
                     .day("VIERNES")
                     .startTime(LocalTime.of(16, 0))
                     .endTime(LocalTime.of(18, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1129,6 +1268,7 @@ public class AcademicScheduleSeeder {
                     .day("LUNES")
                     .startTime(LocalTime.of(10, 0))
                     .endTime(LocalTime.of(12, 0))
+                    .cycle(10)
                     .build());
 
             academicScheduleService.create(AcademicSchedule.builder()
@@ -1137,6 +1277,7 @@ public class AcademicScheduleSeeder {
                     .day("JUEVES")
                     .startTime(LocalTime.of(13, 0))
                     .endTime(LocalTime.of(15, 0))
+                    .cycle(10)
                     .build());
 
         };

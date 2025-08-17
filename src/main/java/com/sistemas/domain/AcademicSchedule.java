@@ -1,6 +1,8 @@
 package com.sistemas.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -47,6 +49,11 @@ public class AcademicSchedule {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime endTime;
+
+    @Column(nullable = false)
+    @Min(value = 1, message = "El ciclo debe ser al menos 1")
+    @Max(value = 10, message = "El ciclo debe ser como máximo 10")
+    private Integer cycle;
 
     public AcademicScheduleType getAcademicScheduleType(){
         return AcademicScheduleType.fromCode(academicScheduleTypeCode);

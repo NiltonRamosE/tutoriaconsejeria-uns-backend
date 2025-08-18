@@ -49,4 +49,9 @@ public class InstructorScheduleServiceImpl implements InstructorScheduleService 
     public List<InstructorSchedule> findByAcademicScheduleId(Long academicScheduleId) {
         return instructorScheduleRepository.findByAcademicScheduleId(academicScheduleId);
     }
+
+    @Override
+    public List<InstructorSchedule> findByInstructorId(Long instructorId) {
+        return instructorScheduleRepository.findByInstructorId(instructorId);
+    }
 }

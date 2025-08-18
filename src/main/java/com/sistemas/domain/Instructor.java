@@ -132,4 +132,23 @@ public class Instructor {
         this.gender = gender;
         this.genderCode = gender.getCode();
     }
+
+    public String formatDedication(String dedication) {
+        if (dedication == null || dedication.isEmpty()) {
+            return dedication;
+        }
+
+        String[] words = dedication.split("_");
+        StringBuilder formatted = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i].toLowerCase();
+            formatted.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1));
+            if (i < words.length - 1) {
+                formatted.append(" ");
+            }
+        }
+
+        return formatted.toString();
+    }
 }

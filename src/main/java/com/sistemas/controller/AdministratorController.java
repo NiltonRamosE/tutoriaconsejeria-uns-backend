@@ -1,12 +1,12 @@
 package com.sistemas.controller;
 
-import com.sistemas.domain.AcademicAssignment;
-import com.sistemas.domain.Administrator;
-import com.sistemas.domain.Student;
-import com.sistemas.domain.TypeActivity;
+import com.sistemas.domain.*;
+import com.sistemas.dto.administrator.InstructorResponse;
+import com.sistemas.dto.administrator.StudentResponse;
 import com.sistemas.dto.assignment.AssignmentResponse;
 import com.sistemas.service.AcademicAssignmentService;
 import com.sistemas.service.AdministratorService;
+import com.sistemas.service.InstructorService;
 import com.sistemas.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,9 @@ public class AdministratorController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private InstructorService instructorService;
 
     @Autowired
     private AcademicAssignmentService academicAssignmentService;
@@ -72,35 +75,61 @@ public class AdministratorController {
     }
 
     @GetMapping("/students/early-stage")
-    public ResponseEntity<List<Student>> getStudentsEarlyStage() {
-
-        return new ResponseEntity<>(studentService.getStudentsEarlyStage(), HttpStatus.OK);
+    public ResponseEntity<List<StudentResponse>> getStudentsEarlyStage() {
+        List<StudentResponse> studentResponses = studentService.getStudentsEarlyStage().stream()
+                .map(this::mapToStudentResponse)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
     @GetMapping("/students/late-stage")
-    public ResponseEntity<List<Student>> getStudentsLateStage(
-            @PathVariable("semester") String semester) {
-
-        return new ResponseEntity<>(studentService.getStudentsLateStage(), HttpStatus.OK);
+    public ResponseEntity<List<StudentResponse>> getStudentsLateStage() {
+        List<StudentResponse> studentResponses = studentService.getStudentsLateStage().stream()
+                .map(this::mapToStudentResponse)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
     @GetMapping("/students/irregular/early-stage")
-    public ResponseEntity<List<Student>> getIrregularConditionStudentsEarlyStage() {
-
-        return new ResponseEntity<>(studentService.getIrregularConditionStudentsEarlyStage(), HttpStatus.OK);
+    public ResponseEntity<List<StudentResponse>> getIrregularConditionStudentsEarlyStage() {
+        List<StudentResponse> studentResponses = studentService.getIrregularConditionStudentsEarlyStage().stream()
+                .map(this::mapToStudentResponse)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
     @GetMapping("/students/irregular/late-stage")
-    public ResponseEntity<List<Student>> getIrregularConditionStudentsLateStage() {
-
-        return new ResponseEntity<>(studentService.getIrregularConditionStudentsLateStage(), HttpStatus.OK);
+    public ResponseEntity<List<StudentResponse>> getIrregularConditionStudentsLateStage() {
+        List<StudentResponse> studentResponses = studentService.getIrregularConditionStudentsLateStage().stream()
+                .map(this::mapToStudentResponse)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
     @PostMapping("/students/assign")
     public ResponseEntity<Void> distributeStudentsAmongInstructors() {
+
         academicAssignmentService.distributeStudentsAmongInstructors();
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/students/list")
+    public ResponseEntity<List<StudentResponse>> getStudentsList() {
+        List<StudentResponse> studentResponses = studentService.listAll().stream()
+                .map(this::mapToStudentResponse)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(studentResponses, HttpStatus.OK);
+    }
+
+    @GetMapping("/instructors/list")
+    public ResponseEntity<List<InstructorResponse>> getInstructorsList() {
+        List<InstructorResponse> instructorResponses = instructorService.listAll().stream()
+                .map(this::mapToInstructorResponse)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(instructorResponses, HttpStatus.OK);
     }
 
     @GetMapping("/assign/list")
@@ -137,4 +166,43 @@ public class AdministratorController {
                 .typeActivity(TypeActivity.fromCode(assignment.getTypeActivityCode()).toString())
                 .build();
     }
+
+    private StudentResponse mapToStudentResponse(Student student) {
+        if (student == null) {
+            return null;
+        }
+
+        return StudentResponse.builder()
+                .studentId(student.getId())
+                .studentName(
+                        student.getName() + " " +
+                        student.getPaternalSurname() + " " +
+                        student.getMaternalSurname()
+                )
+                .studentInstitutionalEmail(student.getInstitutionalEmail())
+                .studentCode(student.getStudentCode())
+                .studentCellphone(String.format("+51 %s", student.getCellphoneNumber()))
+                .yearOfStudy(student.getYearOfStudy().toString())
+                .build();
+    }
+
+    private InstructorResponse mapToInstructorResponse(Instructor instructor) {
+        if (instructor == null) {
+            return null;
+        }
+
+        return InstructorResponse.builder()
+                .instructorId(instructor.getId())
+                .instructorName(
+                        instructor.getName() + " " +
+                                instructor.getPaternalSurname() + " " +
+                                instructor.getMaternalSurname()
+                )
+                .instructorInstitutionalEmail(instructor.getInstitutionalEmail())
+                .instructorMaxAcademicDegree(instructor.getMaxAcademicDegree())
+                .instructorAcademicDepartment(instructor.getAcademicDepartment())
+                .instructorDedication(instructor.formatDedication(instructor.getInstructorDedication().toString()))
+                .build();
+    }
+
 }

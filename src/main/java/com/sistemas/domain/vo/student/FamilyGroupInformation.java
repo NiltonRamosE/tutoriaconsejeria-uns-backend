@@ -3,9 +3,13 @@ package com.sistemas.domain.vo.student;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class FamilyGroupInformation {
 
     @NotBlank(message = "El nivel educativo del padre no debe quedar vacío")

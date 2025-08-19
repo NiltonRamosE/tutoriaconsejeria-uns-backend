@@ -26,6 +26,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student create(Student student) {
         student.setInstitutionalEmail(student.getStudentCode() + "@uns.edu.pe");
+
+        student.setName(student.getName().toUpperCase());
+        student.setPaternalSurname(student.getPaternalSurname().toUpperCase());
+        student.setMaternalSurname(student.getMaternalSurname().toUpperCase());
+
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         return studentRepository.save(student);
     }

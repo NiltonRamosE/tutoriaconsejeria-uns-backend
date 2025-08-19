@@ -25,6 +25,11 @@ public class AdministratorServiceImpl implements AdministratorService {
     public Administrator create(Administrator administrator) {
         String institutionalEmail = InstitutionalEmailGenerator.generateInstitutionalEmail(administrator.getName(), administrator.getPaternalSurname(), administrator.getMaternalSurname());
         administrator.setInstitutionalEmail(institutionalEmail);
+
+        administrator.setName(administrator.getName().toUpperCase());
+        administrator.setPaternalSurname(administrator.getPaternalSurname().toUpperCase());
+        administrator.setMaternalSurname(administrator.getMaternalSurname().toUpperCase());
+
         administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
 
         return administratorRepository.save(administrator);

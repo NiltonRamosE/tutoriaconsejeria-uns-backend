@@ -25,7 +25,13 @@ public class InstructorServiceImpl implements InstructorService {
     public Instructor create(Instructor instructor) {
         String institutionalEmail = InstitutionalEmailGenerator.generateInstitutionalEmail(instructor.getName(), instructor.getPaternalSurname(), instructor.getMaternalSurname());
         instructor.setInstitutionalEmail(institutionalEmail);
+
+        instructor.setName(instructor.getName().toUpperCase());
+        instructor.setPaternalSurname(instructor.getPaternalSurname().toUpperCase());
+        instructor.setMaternalSurname(instructor.getMaternalSurname().toUpperCase());
+
         instructor.setPassword(passwordEncoder.encode(instructor.getPassword()));
+
         return instructorRepository.save(instructor);
     }
 

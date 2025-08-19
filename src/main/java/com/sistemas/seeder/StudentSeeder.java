@@ -1,6 +1,7 @@
 package com.sistemas.seeder;
 
 import com.sistemas.domain.Student;
+import com.sistemas.domain.vo.student.*;
 import com.sistemas.service.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -21,9 +22,37 @@ public class StudentSeeder {
                     .dateOfBirth(LocalDate.of(2006, 12, 24))
                     .cellphoneNumber("941715295")
                     .password("claveE0001")
-                    .socioeconomicInformation(null)
-                    .personalProblems(null)
-                    .familyGroupInformation(null)
+                    .socioeconomicInformation(
+                        new SocioeconomicInformation(
+                            "CHIMBOTE",
+                            MaritalStatus.SOLTERO,
+                            0,
+                            null,
+                            null,
+                            0,
+                            0.0,
+                            "951234567",
+                            "gabriel15@gmail.com",
+                            "AV. PASTO 123",
+                            5,
+                            "HIJO",
+                            HousingType.CASA
+                        )
+                    )
+                    .personalProblems(new PersonalProblems(PersonalProblemType.A, null, "SOFIA HERNÁNDEZ SIFUENTES"))
+                    .familyGroupInformation(
+                        new FamilyGroupInformation(
+                            "SECUNDARIA",
+                            "SUPERIOR",
+                            "COMERCIANTE",
+                            "AMA DE CASA",
+                            FamilyComposition.NUCLEAR,
+                            2,
+                            2,
+                            FamilyType.COMPLETA,
+                            "951234567"
+                        )
+                    )
                     .build());
 
             studentService.create(Student.builder()
@@ -36,13 +65,41 @@ public class StudentSeeder {
                     .dateOfBirth(LocalDate.of(2006, 3, 19))
                     .cellphoneNumber("908788317")
                     .password("claveE0002")
-                    .socioeconomicInformation(null)
-                    .personalProblems(null)
-                    .familyGroupInformation(null)
+                    .socioeconomicInformation(
+                        new SocioeconomicInformation(
+                            "TRUJILLO",
+                            MaritalStatus.CASADO,
+                            2,
+                            "IESL",
+                            "SEÑOR DE LA MISERICORDIA",
+                            1,
+                            1500.50,
+                            "908788317",
+                            "maria87@gmail.com",
+                            "JR. LIMA 456",
+                            3,
+                            "CONYUGE",
+                            HousingType.DEPARTAMENTO
+                        )
+                    )
+                    .personalProblems(new PersonalProblems(null, "ANSIEDAD", "LUIS RAMÍREZ VASQUEZ"))
+                    .familyGroupInformation(
+                        new FamilyGroupInformation(
+                            "SECUNDARIA",
+                            "SUPERIOR",
+                            "ABOGADO",
+                            "DOCENTE",
+                            FamilyComposition.NUCLEAR,
+                            3,
+                            1,
+                            FamilyType.COMPLETA,
+                            "954321678"
+                        )
+                    )
                     .build());
 
             studentService.create(Student.builder()
-                    .name("Luis Gabriela")
+                    .name("Luis Victor")
                     .paternalSurname("Vargas")
                     .maternalSurname("Pérez")
                     .studentCode("202414003")
@@ -51,13 +108,41 @@ public class StudentSeeder {
                     .dateOfBirth(LocalDate.of(2006, 2, 11))
                     .cellphoneNumber("925189636")
                     .password("claveE0003")
-                    .socioeconomicInformation(null)
-                    .personalProblems(null)
-                    .familyGroupInformation(null)
+                    .socioeconomicInformation(
+                        new SocioeconomicInformation(
+                            "LIMA",
+                            MaritalStatus.SOLTERO,
+                            1,
+                            "PROGRAMADOR",
+                            "REMOTO",
+                            1,
+                            900.0,
+                            "987654321",
+                            "carlos12@gmail.com",
+                            "AV. AREQUIPA 789",
+                            2,
+                            "PADRE",
+                            HousingType.CASA
+                        )
+                    )
+                    .personalProblems(new PersonalProblems(null, "DEPRESIÓN", "ANA PÉREZ TORRES"))
+                    .familyGroupInformation(
+                        new FamilyGroupInformation(
+                            "PRIMARIA",
+                            "UNIVERSITARIO",
+                            "VENDEDOR",
+                            "AMA DE CASA",
+                            FamilyComposition.EXTENSA,
+                            1,
+                            1,
+                            FamilyType.INCOMPLETA,
+                            "987654321"
+                        )
+                    )
                     .build());
 
             studentService.create(Student.builder()
-                    .name("Juliana Carlos")
+                    .name("Alejandro Carlos")
                     .paternalSurname("Martínez")
                     .maternalSurname("Sánchez")
                     .studentCode("202414004")
@@ -66,13 +151,41 @@ public class StudentSeeder {
                     .dateOfBirth(LocalDate.of(2006, 10, 9))
                     .cellphoneNumber("910460008")
                     .password("claveE0004")
-                    .socioeconomicInformation(null)
-                    .personalProblems(null)
-                    .familyGroupInformation(null)
+                    .socioeconomicInformation(
+                        new SocioeconomicInformation(
+                            "AREQUIPA",
+                            MaritalStatus.SOLTERO,
+                            0,
+                            null,
+                            null,
+                            0,
+                            0.0,
+                            "965432198",
+                            "alejandro23@gmail.com",
+                            "JR. MERCADO 321",
+                            1,
+                            "HIJO",
+                            HousingType.CASA
+                        )
+                    )
+                    .personalProblems(new PersonalProblems(PersonalProblemType.C, null, "JOSÉ MARTÍNEZ GARCÍA"))
+                    .familyGroupInformation(
+                        new FamilyGroupInformation(
+                            "SECUNDARIA",
+                            "SECUNDARIA",
+                            "COMERCIANTE",
+                            "AMA DE CASA",
+                            FamilyComposition.NUCLEAR,
+                            2,
+                            2,
+                            FamilyType.COMPLETA,
+                            "965432198"
+                        )
+                    )
                     .build());
 
             studentService.create(Student.builder()
-                    .name("Raúl Ana")
+                    .name("Raúl Carlos")
                     .paternalSurname("Hernández")
                     .maternalSurname("García")
                     .studentCode("202414005")
@@ -81,9 +194,37 @@ public class StudentSeeder {
                     .dateOfBirth(LocalDate.of(2006, 12, 8))
                     .cellphoneNumber("951365750")
                     .password("claveE0005")
-                    .socioeconomicInformation(null)
-                    .personalProblems(null)
-                    .familyGroupInformation(null)
+                    .socioeconomicInformation(
+                        new SocioeconomicInformation(
+                            "CUSCO",
+                            MaritalStatus.SOLTERO,
+                            3,
+                            "TECNICO",
+                            "RESTAURANTE",
+                            2,
+                            1200.0,
+                            "976543210",
+                            "raulc77@gmail.com",
+                            "AV. SOL 12",
+                            4,
+                            "PADRE",
+                            HousingType.CUARTO
+                        )
+                    )
+                    .personalProblems(new PersonalProblems(PersonalProblemType.D, null, "JUAN HERNÁNDEZ RAMOS"))
+                    .familyGroupInformation(
+                        new FamilyGroupInformation(
+                            "SECUNDARIA",
+                            "UNIVERSITARIO",
+                            "DOCENTE",
+                            "DOCENTE",
+                            FamilyComposition.EXTENSA,
+                            5,
+                            3,
+                            FamilyType.INCOMPLETA,
+                            "976543210"
+                        )
+                    )
                     .build());
 
             studentService.create(Student.builder()

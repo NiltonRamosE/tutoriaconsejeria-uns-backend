@@ -1,10 +1,14 @@
 package com.sistemas.controller;
 
+import com.sistemas.domain.Administrator;
+import com.sistemas.domain.Instructor;
+import com.sistemas.domain.Student;
 import com.sistemas.dto.auth.AuthenticationRequest;
 import com.sistemas.dto.auth.AuthenticationResponse;
 import com.sistemas.dto.auth.UserResponse;
 import com.sistemas.jwt.CustomUserDetailsService;
 import com.sistemas.jwt.JwtUtil;
+import com.sistemas.mapper.UserMapper;
 import com.sistemas.service.AdministratorService;
 import com.sistemas.service.InstructorService;
 import com.sistemas.service.StudentService;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/auth", produces = "application/json")
@@ -41,6 +47,9 @@ public class AuthController {
     @Autowired
     private AdministratorService administratorService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -55,24 +64,15 @@ public class AuthController {
                 .findFirst()
                 .orElse("unknown");
 
-        UserResponse userResponse = getUserInfo(userType, authenticationRequest.getInstitutionalEmail());
+        String email = authenticationRequest.getInstitutionalEmail();
+
+        Student student = studentService.findByInstitutionalEmail(email).orElse(null);
+        Instructor instructor = instructorService.findByInstitutionalEmail(email).orElse(null);
+        Administrator administrator = administratorService.findByInstitutionalEmail(email).orElse(null);
+
+        UserResponse userResponse = userMapper.getUserInfo(userType, student, instructor, administrator);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt, userType, userResponse));
-    }
-
-    private UserResponse getUserInfo(String userType, String email) {
-        return switch (userType) {
-            case "student" -> studentService.findByInstitutionalEmail(email)
-                    .map(s -> new UserResponse(s.getId(), s.getName() + " " + s.getPaternalSurname() + " " + s.getMaternalSurname(), s.getInstitutionalEmail(), s.getGenderCode()))
-                    .orElse(null);
-            case "instructor" -> instructorService.findByInstitutionalEmail(email)
-                    .map(i -> new UserResponse(i.getId(), i.getName() + " " + i.getPaternalSurname() + " " + i.getMaternalSurname(), i.getInstitutionalEmail(), i.getGenderCode()))
-                    .orElse(null);
-            case "administrator" -> administratorService.findByInstitutionalEmail(email)
-                    .map(a -> new UserResponse(a.getId(), a.getName() + " " + a.getPaternalSurname() + " " + a.getMaternalSurname(), a.getInstitutionalEmail(), a.getGenderCode()))
-                    .orElse(null);
-            default -> null;
-        };
     }
 
 }

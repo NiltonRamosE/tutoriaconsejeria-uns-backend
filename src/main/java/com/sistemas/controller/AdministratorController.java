@@ -6,6 +6,10 @@ import com.sistemas.dto.administrator.AdministratorResponse;
 import com.sistemas.dto.administrator.InstructorResponse;
 import com.sistemas.dto.administrator.StudentResponse;
 import com.sistemas.dto.assignment.AssignmentResponse;
+import com.sistemas.mapper.AdministratorMapper;
+import com.sistemas.mapper.AssignmentMapper;
+import com.sistemas.mapper.InstructorMapper;
+import com.sistemas.mapper.StudentMapper;
 import com.sistemas.service.AcademicAssignmentService;
 import com.sistemas.service.AdministratorService;
 import com.sistemas.service.InstructorService;
@@ -27,13 +31,25 @@ public class AdministratorController {
     private AdministratorService administratorService;
 
     @Autowired
+    private AdministratorMapper administratorMapper;
+
+    @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private StudentMapper studentMapper;
 
     @Autowired
     private InstructorService instructorService;
 
     @Autowired
+    private InstructorMapper instructorMapper;
+
+    @Autowired
     private AcademicAssignmentService academicAssignmentService;
+
+    @Autowired
+    private AssignmentMapper assignmentMapper;
 
     @PostMapping("")
     public ResponseEntity<AdministratorResponse> createAdministrator(
@@ -49,7 +65,7 @@ public class AdministratorController {
 
         Administrator savedAdministrator = administratorService.create(administrator);
 
-        AdministratorResponse response = this.mapToAdministratorResponse(savedAdministrator);
+        AdministratorResponse response = administratorMapper.mapToAdministratorResponse(savedAdministrator);
 
         return ResponseEntity.ok(response);
     }
@@ -57,7 +73,7 @@ public class AdministratorController {
     @GetMapping("")
     public ResponseEntity<List<AdministratorResponse>> getIndex() {
         List<AdministratorResponse> administratorResponses = administratorService.listAll().stream()
-                .map(this::mapToAdministratorResponse)
+                .map(administratorMapper::mapToAdministratorResponse)
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(administratorResponses, HttpStatus.OK);
@@ -92,7 +108,7 @@ public class AdministratorController {
 
         Administrator updatedAdministrator = administratorService.update(administrator);
 
-        AdministratorResponse response = this.mapToAdministratorResponse(updatedAdministrator);
+        AdministratorResponse response = administratorMapper.mapToAdministratorResponse(updatedAdministrator);
 
         return ResponseEntity.ok(response);
     }
@@ -108,7 +124,7 @@ public class AdministratorController {
     @GetMapping("/students/early-stage")
     public ResponseEntity<List<StudentResponse>> getStudentsEarlyStage() {
         List<StudentResponse> studentResponses = studentService.getStudentsEarlyStage().stream()
-                .map(this::mapToStudentResponse)
+                .map(studentMapper::mapToStudentResponse)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
@@ -116,7 +132,7 @@ public class AdministratorController {
     @GetMapping("/students/late-stage")
     public ResponseEntity<List<StudentResponse>> getStudentsLateStage() {
         List<StudentResponse> studentResponses = studentService.getStudentsLateStage().stream()
-                .map(this::mapToStudentResponse)
+                .map(studentMapper::mapToStudentResponse)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
@@ -124,7 +140,7 @@ public class AdministratorController {
     @GetMapping("/students/irregular/early-stage")
     public ResponseEntity<List<StudentResponse>> getIrregularConditionStudentsEarlyStage() {
         List<StudentResponse> studentResponses = studentService.getIrregularConditionStudentsEarlyStage().stream()
-                .map(this::mapToStudentResponse)
+                .map(studentMapper::mapToStudentResponse)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
@@ -132,7 +148,7 @@ public class AdministratorController {
     @GetMapping("/students/irregular/late-stage")
     public ResponseEntity<List<StudentResponse>> getIrregularConditionStudentsLateStage() {
         List<StudentResponse> studentResponses = studentService.getIrregularConditionStudentsLateStage().stream()
-                .map(this::mapToStudentResponse)
+                .map(studentMapper::mapToStudentResponse)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
@@ -148,7 +164,7 @@ public class AdministratorController {
     @GetMapping("/students/list")
     public ResponseEntity<List<StudentResponse>> getStudentsList() {
         List<StudentResponse> studentResponses = studentService.listAll().stream()
-                .map(this::mapToStudentResponse)
+                .map(studentMapper::mapToStudentResponse)
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
@@ -157,7 +173,7 @@ public class AdministratorController {
     @GetMapping("/instructors/list")
     public ResponseEntity<List<InstructorResponse>> getInstructorsList() {
         List<InstructorResponse> instructorResponses = instructorService.listAll().stream()
-                .map(this::mapToInstructorResponse)
+                .map(instructorMapper::mapToInstructorResponse)
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(instructorResponses, HttpStatus.OK);
@@ -166,89 +182,9 @@ public class AdministratorController {
     @GetMapping("/assign/list")
     public ResponseEntity<List<AssignmentResponse>> getAcademicAssignmentList() {
         List<AssignmentResponse> assignmentResponses = academicAssignmentService.listAll().stream()
-                .map(this::mapToAssignmentResponse)
+                .map(assignmentMapper::mapToAssignmentResponse)
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(assignmentResponses, HttpStatus.OK);
     }
-
-    private AssignmentResponse mapToAssignmentResponse(AcademicAssignment assignment) {
-        if (assignment == null || assignment.getStudent() == null || assignment.getInstructor() == null) {
-            return null;
-        }
-
-        return AssignmentResponse.builder()
-                .academicAssignmentId(assignment.getId())
-                .studentId(assignment.getStudent().getId())
-                .instructorId(assignment.getInstructor().getId())
-                .studentName(
-                        assignment.getStudent().getName() + " " +
-                                assignment.getStudent().getPaternalSurname() + " " +
-                                assignment.getStudent().getMaternalSurname()
-                )
-                .instructorName(
-                        assignment.getInstructor().getName() + " " +
-                                assignment.getInstructor().getPaternalSurname() + " " +
-                                assignment.getInstructor().getMaternalSurname()
-                )
-                .studentInstitutionalEmail(assignment.getStudent().getInstitutionalEmail())
-                .instructorInstitutionalEmail(assignment.getInstructor().getInstitutionalEmail())
-                .studentCode(assignment.getStudent().getStudentCode())
-                .typeActivity(TypeActivity.fromCode(assignment.getTypeActivityCode()).toString())
-                .build();
-    }
-
-    private StudentResponse mapToStudentResponse(Student student) {
-        if (student == null) {
-            return null;
-        }
-
-        return StudentResponse.builder()
-                .studentId(student.getId())
-                .studentName(
-                        student.getName() + " " +
-                        student.getPaternalSurname() + " " +
-                        student.getMaternalSurname()
-                )
-                .studentInstitutionalEmail(student.getInstitutionalEmail())
-                .studentCode(student.getStudentCode())
-                .studentCellphone(String.format("+51 %s", student.getCellphoneNumber()))
-                .yearOfStudy(student.getYearOfStudy().toString())
-                .build();
-    }
-
-    private InstructorResponse mapToInstructorResponse(Instructor instructor) {
-        if (instructor == null) {
-            return null;
-        }
-
-        return InstructorResponse.builder()
-                .instructorId(instructor.getId())
-                .instructorName(
-                        instructor.getName() + " " +
-                                instructor.getPaternalSurname() + " " +
-                                instructor.getMaternalSurname()
-                )
-                .instructorInstitutionalEmail(instructor.getInstitutionalEmail())
-                .instructorMaxAcademicDegree(instructor.getMaxAcademicDegree())
-                .instructorAcademicDepartment(instructor.getAcademicDepartment())
-                .instructorDedication(instructor.formatDedication(instructor.getInstructorDedication().toString()))
-                .build();
-    }
-
-    private AdministratorResponse mapToAdministratorResponse(Administrator administrator) {
-        if (administrator == null) {
-            return null;
-        }
-
-        return AdministratorResponse.builder()
-                .id(administrator.getId())
-                .administratorName(administrator.getName())
-                .administratorPaternalSurname(administrator.getPaternalSurname())
-                .administratorMaternalSurname(administrator.getMaternalSurname())
-                .administratorInstitutionalEmail(administrator.getInstitutionalEmail())
-                .gender(administrator.getGender().toString())
-                .build();
-    }
-
 }

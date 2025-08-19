@@ -47,6 +47,7 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public Administrator update(Administrator administrator) {
+        administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
         return administratorRepository.save(administrator);
     }
 

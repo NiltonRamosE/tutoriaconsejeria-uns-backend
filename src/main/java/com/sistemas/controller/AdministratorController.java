@@ -1,6 +1,8 @@
 package com.sistemas.controller;
 
 import com.sistemas.domain.*;
+import com.sistemas.dto.administrator.AdministratorRequest;
+import com.sistemas.dto.administrator.AdministratorResponse;
 import com.sistemas.dto.administrator.InstructorResponse;
 import com.sistemas.dto.administrator.StudentResponse;
 import com.sistemas.dto.assignment.AssignmentResponse;
@@ -34,15 +36,31 @@ public class AdministratorController {
     private AcademicAssignmentService academicAssignmentService;
 
     @PostMapping("")
-    public ResponseEntity<Administrator> createAdministrator(@Valid @RequestBody Administrator administrator) {
+    public ResponseEntity<AdministratorResponse> createAdministrator(
+            @Valid @RequestBody AdministratorRequest administratorRequest) {
+
+        Administrator administrator = Administrator.builder()
+                .name(administratorRequest.getAdministratorName())
+                .paternalSurname(administratorRequest.getAdministratorPaternalSurname())
+                .maternalSurname(administratorRequest.getAdministratorMaternalSurname())
+                .password(administratorRequest.getPassword())
+                .genderCode(administratorRequest.getGender())
+                .build();
+
         Administrator savedAdministrator = administratorService.create(administrator);
-        return ResponseEntity.ok(savedAdministrator);
+
+        AdministratorResponse response = this.mapToAdministratorResponse(savedAdministrator);
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Administrator>> getIndex() {
+    public ResponseEntity<List<AdministratorResponse>> getIndex() {
+        List<AdministratorResponse> administratorResponses = administratorService.listAll().stream()
+                .map(this::mapToAdministratorResponse)
+                .collect(Collectors.toList());
 
-        return new ResponseEntity<>(administratorService.listAll(), HttpStatus.OK);
+        return new ResponseEntity<>(administratorResponses, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -59,11 +77,24 @@ public class AdministratorController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity <Administrator> update(
-            @RequestBody Administrator administrator) {
+    public ResponseEntity <AdministratorResponse> update(
+            @RequestBody AdministratorRequest administratorRequest) {
 
-        Administrator putAdministrator = administratorService.update(administrator);
-        return new ResponseEntity<>(putAdministrator, HttpStatus.OK);
+        Administrator administrator = administratorService.search(administratorRequest.getId());
+        administrator.setName(administratorRequest.getAdministratorName());
+        administrator.setPaternalSurname(administratorRequest.getAdministratorPaternalSurname());
+        administrator.setMaternalSurname(administratorRequest.getAdministratorMaternalSurname());
+        administrator.setGenderCode(administratorRequest.getGender());
+
+        if (administratorRequest.getPassword() != null && !administratorRequest.getPassword().isEmpty()) {
+            administrator.setPassword(administratorRequest.getPassword());
+        }
+
+        Administrator updatedAdministrator = administratorService.update(administrator);
+
+        AdministratorResponse response = this.mapToAdministratorResponse(updatedAdministrator);
+
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
@@ -202,6 +233,21 @@ public class AdministratorController {
                 .instructorMaxAcademicDegree(instructor.getMaxAcademicDegree())
                 .instructorAcademicDepartment(instructor.getAcademicDepartment())
                 .instructorDedication(instructor.formatDedication(instructor.getInstructorDedication().toString()))
+                .build();
+    }
+
+    private AdministratorResponse mapToAdministratorResponse(Administrator administrator) {
+        if (administrator == null) {
+            return null;
+        }
+
+        return AdministratorResponse.builder()
+                .id(administrator.getId())
+                .administratorName(administrator.getName())
+                .administratorPaternalSurname(administrator.getPaternalSurname())
+                .administratorMaternalSurname(administrator.getMaternalSurname())
+                .administratorInstitutionalEmail(administrator.getInstitutionalEmail())
+                .gender(administrator.getGender().toString())
                 .build();
     }
 

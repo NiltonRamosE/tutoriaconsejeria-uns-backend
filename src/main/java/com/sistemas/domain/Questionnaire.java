@@ -6,7 +6,6 @@ import com.sistemas.domain.vo.questionnaire.PsychopedagogicalAssessment;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 import org.hibernate.annotations.Type;

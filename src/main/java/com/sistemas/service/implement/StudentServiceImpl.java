@@ -1,6 +1,5 @@
 package com.sistemas.service.implement;
 
-import com.sistemas.domain.InstitutionalEmailGenerator;
 import com.sistemas.domain.Student;
 import com.sistemas.repository.StudentRepository;
 import com.sistemas.service.StudentService;
@@ -81,14 +80,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private List<Student> getStudentsByStage(List<Integer> yearOfStudy, boolean onlyActive) {
-        // Llamar al repositorio para obtener los estudiantes por su año de estudio
         List<Object[]> studentsData = studentRepository.findStudentsByYearOfStudy(yearOfStudy);
 
-        // Filtrar y obtener los estudiantes
         return studentsData.stream()
                 .filter(result -> {
                     if (onlyActive) {
-                        return true; // Pasan todos los estudiantes
+                        return true;
                     }
                     return Integer.parseInt(result[1].toString()) != 1; // Condición de estudiantes irregulares
                 })

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class InstructorScheduleMapper {
@@ -27,7 +26,7 @@ public class InstructorScheduleMapper {
                     .endTime(schedule.getEndTime().format(timeFormatter))
                     .build();
             })
-            .collect(Collectors.toList());
+            .toList();
 
         return InstructorScheduleResponse.builder()
             .instructorName(

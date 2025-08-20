@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/academic-schedule", produces = "application/json")
@@ -29,7 +28,7 @@ public class AcademicScheduleController {
             @RequestParam Integer cycle) {
         List<AcademicScheduleResponse> academicScheduleResponses = academicScheduleService.findByCycle(cycle).stream()
                 .map(academicScheduleMapper::mapToAcademicScheduleResponse)
-                .collect(Collectors.toList());
+                .toList();
         return new ResponseEntity<>(academicScheduleResponses, HttpStatus.OK);
     }
 }

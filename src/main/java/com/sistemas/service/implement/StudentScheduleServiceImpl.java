@@ -1,7 +1,6 @@
 package com.sistemas.service.implement;
 
 import com.sistemas.domain.StudentSchedule;
-import com.sistemas.repository.InstructorScheduleRepository;
 import com.sistemas.repository.StudentScheduleRepository;
 import com.sistemas.service.StudentScheduleService;
 import lombok.RequiredArgsConstructor;

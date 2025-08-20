@@ -21,7 +21,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/administrator", produces = "application/json")
@@ -74,7 +73,7 @@ public class AdministratorController {
     public ResponseEntity<List<AdministratorResponse>> getIndex() {
         List<AdministratorResponse> administratorResponses = administratorService.listAll().stream()
                 .map(administratorMapper::mapToAdministratorResponse)
-                .collect(Collectors.toList());
+                .toList();
 
         return new ResponseEntity<>(administratorResponses, HttpStatus.OK);
     }
@@ -125,7 +124,7 @@ public class AdministratorController {
     public ResponseEntity<List<StudentResponse>> getStudentsEarlyStage() {
         List<StudentResponse> studentResponses = studentService.getStudentsEarlyStage().stream()
                 .map(studentMapper::mapToStudentResponse)
-                .collect(Collectors.toList());
+                .toList();
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
@@ -133,7 +132,7 @@ public class AdministratorController {
     public ResponseEntity<List<StudentResponse>> getStudentsLateStage() {
         List<StudentResponse> studentResponses = studentService.getStudentsLateStage().stream()
                 .map(studentMapper::mapToStudentResponse)
-                .collect(Collectors.toList());
+                .toList();
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
@@ -141,7 +140,7 @@ public class AdministratorController {
     public ResponseEntity<List<StudentResponse>> getIrregularConditionStudentsEarlyStage() {
         List<StudentResponse> studentResponses = studentService.getIrregularConditionStudentsEarlyStage().stream()
                 .map(studentMapper::mapToStudentResponse)
-                .collect(Collectors.toList());
+                .toList();
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
@@ -149,7 +148,7 @@ public class AdministratorController {
     public ResponseEntity<List<StudentResponse>> getIrregularConditionStudentsLateStage() {
         List<StudentResponse> studentResponses = studentService.getIrregularConditionStudentsLateStage().stream()
                 .map(studentMapper::mapToStudentResponse)
-                .collect(Collectors.toList());
+                .toList();
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
 
@@ -165,7 +164,7 @@ public class AdministratorController {
     public ResponseEntity<List<StudentResponse>> getStudentsList() {
         List<StudentResponse> studentResponses = studentService.listAll().stream()
                 .map(studentMapper::mapToStudentResponse)
-                .collect(Collectors.toList());
+                .toList();
 
         return new ResponseEntity<>(studentResponses, HttpStatus.OK);
     }
@@ -174,7 +173,7 @@ public class AdministratorController {
     public ResponseEntity<List<InstructorResponse>> getInstructorsList() {
         List<InstructorResponse> instructorResponses = instructorService.listAll().stream()
                 .map(instructorMapper::mapToInstructorResponse)
-                .collect(Collectors.toList());
+                .toList();
 
         return new ResponseEntity<>(instructorResponses, HttpStatus.OK);
     }
@@ -183,7 +182,7 @@ public class AdministratorController {
     public ResponseEntity<List<AssignmentResponse>> getAcademicAssignmentList() {
         List<AssignmentResponse> assignmentResponses = academicAssignmentService.listAll().stream()
                 .map(assignmentMapper::mapToAssignmentResponse)
-                .collect(Collectors.toList());
+                .toList();
 
         return new ResponseEntity<>(assignmentResponses, HttpStatus.OK);
     }

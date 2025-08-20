@@ -49,4 +49,9 @@ public class AcademicScheduleServiceImpl implements AcademicScheduleService {
     public List<AcademicSchedule> findByCycle(Integer cycle) {
         return academicScheduleRepository.findByCycle(cycle);
     }
+
+    @Override
+    public List<Object[]> findAcademicScheduleByStudentAndInstructor(Long studentId, Long instructorId) {
+        return academicScheduleRepository.findAcademicScheduleByStudentAndInstructor(studentId, instructorId);
+    }
 }

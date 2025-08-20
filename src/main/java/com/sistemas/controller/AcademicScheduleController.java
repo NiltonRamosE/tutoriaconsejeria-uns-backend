@@ -6,10 +6,7 @@ import com.sistemas.service.AcademicScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,14 @@ public class AcademicScheduleController {
                 .map(academicScheduleMapper::mapToAcademicScheduleResponse)
                 .toList();
         return new ResponseEntity<>(academicScheduleResponses, HttpStatus.OK);
+    }
+
+    @GetMapping("/compare/{studentId}/{instructorId}")
+    public ResponseEntity<?> getBusySchedulesByStudentAndInstructor(
+            @PathVariable("studentId") Long studentId, @PathVariable("instructorId") Long instructorId) {
+
+        List<Object[]> busySchedules = academicScheduleService.findAcademicScheduleByStudentAndInstructor(studentId, instructorId);
+
+        return new ResponseEntity<>(busySchedules, HttpStatus.OK);
     }
 }

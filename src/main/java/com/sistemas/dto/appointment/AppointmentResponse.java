@@ -1,4 +1,4 @@
-package com.sistemas.dto.student;
+package com.sistemas.dto.appointment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -55,4 +55,8 @@ public class AppointmentSchedule {
     @Column(length = 25, name = "alt_schedule_c")
     @NotBlank(message = "El campo horario alternativo C no debe quedar vacío")
     private String altScheduleC;
+
+    @Column(length = 10)
+    @NotBlank(message = "El campo remitente no debe quedar vacío")
+    private String sender;
 }

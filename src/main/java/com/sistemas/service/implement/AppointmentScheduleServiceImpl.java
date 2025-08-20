@@ -44,4 +44,9 @@ public class AppointmentScheduleServiceImpl implements AppointmentScheduleServic
     public void delete(Long id) {
         appointmentScheduleRepository.deleteById(id);
     }
+
+    @Override
+    public List<AppointmentSchedule> findByStudentIdAndSender(Long studentId, String sender) {
+        return appointmentScheduleRepository.findByStudentIdAndSender(studentId, sender);
+    }
 }

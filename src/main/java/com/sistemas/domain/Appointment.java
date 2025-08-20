@@ -50,7 +50,7 @@ public class Appointment {
     private String specificAppointmentReason;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "method", nullable = false, length = 1)
+    @Column(name = "method", length = 1)
     private AppointmentMethod appointmentMethod;
 
     @Column(name = "specific_method", length = 100)

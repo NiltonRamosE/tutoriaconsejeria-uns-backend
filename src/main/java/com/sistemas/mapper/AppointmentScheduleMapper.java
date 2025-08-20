@@ -4,8 +4,8 @@ import com.sistemas.domain.Appointment;
 import com.sistemas.domain.AppointmentSchedule;
 import com.sistemas.domain.Instructor;
 import com.sistemas.domain.Student;
+import com.sistemas.dto.appointment_schedule.AppointmentRequestWithAltSchedule;
 import com.sistemas.dto.student.AppointmentScheduleStudentResponse;
-import com.sistemas.dto.student.ScheduleIndividualAppointmentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ public class AppointmentScheduleMapper {
     private AppointmentMapper appointmentMapper;
 
     public AppointmentSchedule mapToAppointmentScheduleCreate(
-            ScheduleIndividualAppointmentRequest request,
+            AppointmentRequestWithAltSchedule request,
             Student student,
             Instructor instructor,
             Appointment appointment,

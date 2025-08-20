@@ -2,6 +2,7 @@ package com.sistemas.mapper;
 
 import com.sistemas.domain.AcademicAssignment;
 import com.sistemas.dto.student.AssignedInstructorResponse;
+import com.sistemas.dto.student.AssignedStudentResponse;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,6 +22,22 @@ public class AcademicAssignmentMapper {
             )
             .typeActivity(academicAssignment.getTypeActivityCode())
             .bothActivities(false)
+            .build();
+    }
+
+    public AssignedStudentResponse mapToAssignedStudentResponse(AcademicAssignment academicAssignment) {
+        if (academicAssignment == null) {
+            return null;
+        }
+
+        return AssignedStudentResponse.builder()
+            .id(academicAssignment.getStudent().getId())
+            .fullName(
+                academicAssignment.getStudent().getName() + " " +
+                academicAssignment.getStudent().getPaternalSurname() + " " +
+                academicAssignment.getStudent().getMaternalSurname()
+            )
+            .typeActivityCode(academicAssignment.getTypeActivityCode())
             .build();
     }
 }

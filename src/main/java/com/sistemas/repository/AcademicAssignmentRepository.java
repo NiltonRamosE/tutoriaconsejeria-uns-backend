@@ -41,10 +41,17 @@ public interface AcademicAssignmentRepository extends JpaRepository<AcademicAssi
         FROM AcademicAssignment aa
         INNER JOIN aa.student s
         WHERE aa.instructor.id = :instructorId
-          AND aa.typeActivityCode = :typeActivityCode
     """)
     List<Student> findStudentsByInstructorId(
-            @Param("instructorId") Long instructorId,
-            @Param("typeActivityCode") char typeActivityCode
+            @Param("instructorId") Long instructorId
+    );
+
+    @Query(value = """
+        SELECT aa
+        FROM AcademicAssignment aa
+        WHERE aa.instructor.id = :instructorId
+    """)
+    List<AcademicAssignment> findAcademicAssignmentsByInstructorId(
+            @Param("instructorId") Long instructorId
     );
 }

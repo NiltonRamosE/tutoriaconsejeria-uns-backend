@@ -65,13 +65,18 @@ public class AcademicAssignmentServiceImpl implements AcademicAssignmentService 
     }
 
     @Override
-    public List<Student> findStudentsByInstructorId(Long instructorId, char typeActivityCode) {
-        return academicAssignmentRepository.findStudentsByInstructorId(instructorId, typeActivityCode);
+    public List<Student> findStudentsByInstructorId(Long instructorId) {
+        return academicAssignmentRepository.findStudentsByInstructorId(instructorId);
     }
 
     @Override
     public List<AcademicAssignment> findAcademicAssignmentsByStudentId(Long studentId) {
         return academicAssignmentRepository.findAcademicAssignmentsByStudentId(studentId);
+    }
+
+    @Override
+    public List<AcademicAssignment> findAcademicAssignmentsByInstructorId(Long instructorId) {
+        return academicAssignmentRepository.findAcademicAssignmentsByInstructorId(instructorId);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.sistemas.dto.instructor;
 
-import com.sistemas.dto.student.AppointmentResponse;
+import com.sistemas.dto.appointment.AppointmentResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

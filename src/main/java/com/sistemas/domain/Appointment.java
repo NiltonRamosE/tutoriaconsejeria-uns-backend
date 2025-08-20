@@ -3,14 +3,20 @@ package com.sistemas.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "appointments")
 public class Appointment {
 
@@ -19,16 +25,13 @@ public class Appointment {
     @Column(name = "appointment_id")
     private Long id;
 
-    @Temporal(TemporalType.DATE)
     @Future(message = "Ingrese una fecha válida")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDate date;
 
-    @Column(nullable = false)
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime startTime;
 
-    @Column(nullable = false)
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime endTime;
 
@@ -39,7 +42,7 @@ public class Appointment {
     private AppointmentModality appointmentModality;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "reason", nullable = false, length = 1)
+    @Column(name = "reason", length = 1)
     private AppointmentReason appointmentReason;
 
     @Column(name = "specific_reason", length = 100)

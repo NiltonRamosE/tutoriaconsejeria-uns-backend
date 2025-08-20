@@ -12,7 +12,9 @@ public interface AcademicAssignmentService extends IGenericService<AcademicAssig
 
     long countStudentsByInstructorAndTypeActivity(Long instructorId, char typeActivityCode);
 
-    Instructor findInstructorsByStudentId(Long studentId, char typeActivityCode);
+    List<Instructor> findInstructorsByStudentId(Long studentId);
 
     List<Student> findStudentsByInstructorId(Long instructorId, char typeActivityCode);
+
+    List<AcademicAssignment> findAcademicAssignmentsByStudentId(Long studentId);
 }

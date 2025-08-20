@@ -16,11 +16,11 @@ public class AcademicScheduleMapper {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
         return AcademicScheduleResponse.builder()
-                .day(academicSchedule.getDay())
-                .course(academicSchedule.getCourse())
-                .type(academicSchedule.getAcademicScheduleTypeCode())
-                .startTime(academicSchedule.getStartTime().format(timeFormatter))
-                .endTime(academicSchedule.getEndTime().format(timeFormatter))
-                .build();
+            .day(academicSchedule.getDay())
+            .course(academicSchedule.getCourse())
+            .type(academicSchedule.getAcademicScheduleTypeCode())
+            .startTime(academicSchedule.getStartTime().format(timeFormatter))
+            .endTime(academicSchedule.getEndTime().format(timeFormatter))
+            .build();
     }
 }

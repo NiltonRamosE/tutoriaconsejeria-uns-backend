@@ -1,14 +1,13 @@
 package com.sistemas.controller;
 
 import com.sistemas.domain.*;
-import com.sistemas.dto.student.AssignedInstructorResponse;
-import com.sistemas.dto.student.ScheduleIndividualAppointmentRequest;
-import com.sistemas.dto.student.StudentProfileResponse;
+import com.sistemas.dto.student.*;
 import com.sistemas.mapper.AcademicAssignmentMapper;
 import com.sistemas.mapper.AppointmentMapper;
 import com.sistemas.mapper.AppointmentScheduleMapper;
 import com.sistemas.mapper.StudentMapper;
 import com.sistemas.service.*;
+import com.sistemas.service.implement.AppointmentFacadeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,6 +47,9 @@ public class StudentController {
 
     @Autowired
     private AcademicAssignmentMapper academicAssignmentMapper;
+
+    @Autowired
+    private AppointmentFacadeService appointmentFacadeService;
 
     @PostMapping("")
     public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
@@ -89,39 +91,66 @@ public class StudentController {
         return new ResponseEntity<>(assignedInstructors, HttpStatus.OK);
     }
 
+    @GetMapping("/assigned/{id}")
+    public ResponseEntity<List<AssignedStudentResponse>> getStudentsAssignedByInstructor(@PathVariable("id") Long id) {
+        List<AcademicAssignment> academicAssignments  = academicAssignmentService.findAcademicAssignmentsByInstructorId(id);
+
+        List<AssignedStudentResponse> assignedStudentResponses = academicAssignments.stream()
+                .map(academicAssignmentMapper::mapToAssignedStudentResponse)
+                .toList();
+
+        return new ResponseEntity<>(assignedStudentResponses, HttpStatus.OK);
+    }
+
     @PostMapping("/appointment/individual")
     public ResponseEntity<AppointmentSchedule> scheduleIndividualAppointment(@Valid @RequestBody ScheduleIndividualAppointmentRequest request) {
 
         Instructor instructor = instructorService.search(request.getInstructorId());
         Student student = studentService.search(request.getStudentId());
 
-        Appointment appointmentCreated = appointmentService.create(appointmentMapper.mapToAppointment(request));
-
-        AppointmentSchedule appointmentSchedule = appointmentScheduleMapper.mapToAppointmentSchedule(
-                request,
-                student,
-                instructor,
-                appointmentCreated
+        AppointmentSchedule appointmentSchedule = appointmentFacadeService.createIndividualAppointment(
+            request,
+            student,
+            instructor,
+            "student"
         );
 
-        return ResponseEntity.ok(appointmentScheduleService.create(appointmentSchedule));
+        return ResponseEntity.ok(appointmentSchedule);
     }
 
     @PostMapping("/appointment/group")
-    public ResponseEntity<AppointmentSchedule> scheduleGroupAppointment(@Valid @RequestBody ScheduleIndividualAppointmentRequest request) {
+    public ResponseEntity<List<AppointmentSchedule>> scheduleGroupAppointment(@Valid @RequestBody ScheduleGroupAppointmentRequest request) {
 
         Instructor instructor = instructorService.search(request.getInstructorId());
-        Student student = studentService.search(request.getStudentId());
 
-        Appointment appointmentCreated = appointmentService.create(appointmentMapper.mapToAppointment(request));
+        List<Student> students = request.getStudentsId().stream()
+            .map(studentService::search)
+            .toList();
 
-        AppointmentSchedule appointmentSchedule = appointmentScheduleMapper.mapToAppointmentSchedule(
+        List<AppointmentSchedule> appointmentScheduleList = appointmentFacadeService.createGroupAppointment(
                 request,
-                student,
+                students,
                 instructor,
-                appointmentCreated
+                "student"
         );
 
-        return ResponseEntity.ok(appointmentScheduleService.create(appointmentSchedule));
+        return ResponseEntity.ok(appointmentScheduleList);
     }
+
+    @GetMapping("/appointments/sent/{id}")
+    public ResponseEntity<List<AppointmentScheduleStudentResponse>> getAppointmentsSent(@PathVariable Long id) {
+        return ResponseEntity.ok(getAppointmentsBySender(id, "student"));
+    }
+
+    @GetMapping("/appointments/received/{id}")
+    public ResponseEntity<List<AppointmentScheduleStudentResponse>> getAppointmentsReceived(@PathVariable Long id) {
+        return ResponseEntity.ok(getAppointmentsBySender(id, "instructor"));
+    }
+
+    private List<AppointmentScheduleStudentResponse> getAppointmentsBySender(Long studentId, String sender) {
+        return appointmentScheduleService.findByStudentIdAndSender(studentId, sender).stream()
+            .map(appointmentScheduleMapper::mapToAppointmentScheduleResponse)
+            .toList();
+    }
+
 }

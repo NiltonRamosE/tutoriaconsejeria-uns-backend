@@ -10,6 +10,8 @@ import com.sistemas.mapper.AppointmentMapper;
 import com.sistemas.mapper.AppointmentScheduleMapper;
 import com.sistemas.service.AppointmentScheduleService;
 import com.sistemas.service.AppointmentService;
+import com.sistemas.service.InstructorService;
+import com.sistemas.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,12 @@ import java.util.List;
 
 @Service
 public class AppointmentFacadeService {
+
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private InstructorService instructorService;
 
     @Autowired
     private AppointmentService appointmentService;
@@ -34,18 +42,20 @@ public class AppointmentFacadeService {
     @Transactional
     public AppointmentSchedule createIndividualAppointment(
             ScheduleIndividualAppointmentRequest request,
-            Student student,
-            Instructor instructor,
             String sender
     ) {
+
+        Instructor instructorFound = instructorService.search(request.getInstructorId());
+        Student studentFound = studentService.search(request.getStudentId());
+
         Appointment appointmentCreated = appointmentService.create(
-                appointmentMapper.mapToAppointment(request)
+                appointmentMapper.mapToAppointmentCreate(request)
         );
 
         AppointmentSchedule appointmentSchedule = appointmentScheduleMapper.mapToAppointmentScheduleCreate(
                 request,
-                student,
-                instructor,
+                studentFound,
+                instructorFound,
                 appointmentCreated,
                 sender
         );
@@ -56,19 +66,23 @@ public class AppointmentFacadeService {
     @Transactional
     public List<AppointmentSchedule> createGroupAppointment(
             ScheduleGroupAppointmentRequest request,
-            List<Student> students,
-            Instructor instructor,
             String sender
     ) {
+        Instructor instructorFound = instructorService.search(request.getInstructorId());
+
+        List<Student> studentsFound = request.getStudentsId().stream()
+                .map(studentService::search)
+                .toList();
+
         Appointment appointmentCreated = appointmentService.create(
-                appointmentMapper.mapToAppointment(request)
+                appointmentMapper.mapToAppointmentCreate(request)
         );
 
-        return students.stream()
+        return studentsFound.stream()
                 .map(student -> appointmentScheduleMapper.mapToAppointmentScheduleCreate(
                         request,
                         student,
-                        instructor,
+                        instructorFound,
                         appointmentCreated,
                         sender
                 ))

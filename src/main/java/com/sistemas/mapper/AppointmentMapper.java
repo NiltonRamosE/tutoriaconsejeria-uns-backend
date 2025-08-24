@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AppointmentMapper {
-    public Appointment mapToAppointment(AppointmentRequest request) {
+    public Appointment mapToAppointmentCreate(AppointmentRequest request) {
         return Appointment.builder()
             .appointmentMethod(safeEnumValueOf(AppointmentMethod.class, request.getAppointmentMethod()))
             .appointmentReason(safeEnumValueOf(AppointmentReason.class, request.getAppointmentReason()))

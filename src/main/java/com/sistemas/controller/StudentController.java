@@ -105,15 +105,7 @@ public class StudentController {
     @PostMapping("/appointment/individual")
     public ResponseEntity<AppointmentSchedule> scheduleIndividualAppointment(@Valid @RequestBody ScheduleIndividualAppointmentRequest request) {
 
-        Instructor instructor = instructorService.search(request.getInstructorId());
-        Student student = studentService.search(request.getStudentId());
-
-        AppointmentSchedule appointmentSchedule = appointmentFacadeService.createIndividualAppointment(
-            request,
-            student,
-            instructor,
-            "student"
-        );
+        AppointmentSchedule appointmentSchedule = appointmentFacadeService.createIndividualAppointment(request, "student");
 
         return ResponseEntity.ok(appointmentSchedule);
     }
@@ -121,18 +113,7 @@ public class StudentController {
     @PostMapping("/appointment/group")
     public ResponseEntity<List<AppointmentSchedule>> scheduleGroupAppointment(@Valid @RequestBody ScheduleGroupAppointmentRequest request) {
 
-        Instructor instructor = instructorService.search(request.getInstructorId());
-
-        List<Student> students = request.getStudentsId().stream()
-            .map(studentService::search)
-            .toList();
-
-        List<AppointmentSchedule> appointmentScheduleList = appointmentFacadeService.createGroupAppointment(
-                request,
-                students,
-                instructor,
-                "student"
-        );
+        List<AppointmentSchedule> appointmentScheduleList = appointmentFacadeService.createGroupAppointment(request, "student");
 
         return ResponseEntity.ok(appointmentScheduleList);
     }

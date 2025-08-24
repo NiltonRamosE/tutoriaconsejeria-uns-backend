@@ -1,6 +1,7 @@
 package com.sistemas.service.implement;
 
 import com.sistemas.domain.Appointment;
+import com.sistemas.domain.AppointmentSchedule;
 import com.sistemas.repository.AppointmentRepository;
 import com.sistemas.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
@@ -43,5 +44,10 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public void delete(Long id) {
         appointmentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Appointment> findByStudentSenderIdAndSender(Long studentSenderId, String sender) {
+        return appointmentRepository.findByStudentSenderIdAndSender(studentSenderId, sender);
     }
 }

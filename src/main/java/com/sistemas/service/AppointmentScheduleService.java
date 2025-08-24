@@ -5,5 +5,5 @@ import com.sistemas.domain.AppointmentSchedule;
 import java.util.List;
 
 public interface AppointmentScheduleService extends IGenericService<AppointmentSchedule, Long>{
-    List<AppointmentSchedule> findByStudentIdAndSender(Long studentId, String sender);
+    List<AppointmentSchedule> findByAppointmentIdIn(List<Long> appointmentIds);
 }

@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface AppointmentScheduleRepository extends JpaRepository<AppointmentSchedule, Long> {
-
-    List<AppointmentSchedule> findByStudentIdAndSender(Long studentId, String sender);
+    List<AppointmentSchedule> findByAppointmentIdIn(List<Long> appointmentIds);
 }

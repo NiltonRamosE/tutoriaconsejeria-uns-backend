@@ -1,7 +1,6 @@
 package com.sistemas.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,20 +42,4 @@ public class AppointmentSchedule {
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_appointment_schedules_instructors"))
     private Instructor instructor;
-
-    @Column(length = 25, name = "alt_schedule_a")
-    @NotBlank(message = "El campo horario alternativo A no debe quedar vacío")
-    private String altScheduleA;
-
-    @Column(length = 25, name = "alt_schedule_b")
-    @NotBlank(message = "El campo horario alternativo B no debe quedar vacío")
-    private String altScheduleB;
-
-    @Column(length = 25, name = "alt_schedule_c")
-    @NotBlank(message = "El campo horario alternativo C no debe quedar vacío")
-    private String altScheduleC;
-
-    @Column(length = 10)
-    @NotBlank(message = "El campo remitente no debe quedar vacío")
-    private String sender;
 }

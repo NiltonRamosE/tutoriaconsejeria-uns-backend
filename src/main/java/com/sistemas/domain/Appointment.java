@@ -2,6 +2,7 @@ package com.sistemas.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -68,6 +69,29 @@ public class Appointment {
 
     @Transient
     private TypeActivity typeActivity;
+
+    @Column(length = 25, name = "alt_schedule_a")
+    @NotBlank(message = "El campo horario alternativo A no debe quedar vacío")
+    private String altScheduleA;
+
+    @Column(length = 25, name = "alt_schedule_b")
+    @NotBlank(message = "El campo horario alternativo B no debe quedar vacío")
+    private String altScheduleB;
+
+    @Column(length = 25, name = "alt_schedule_c")
+    @NotBlank(message = "El campo horario alternativo C no debe quedar vacío")
+    private String altScheduleC;
+
+    @Column(length = 10)
+    @NotBlank(message = "El campo remitente no debe quedar vacío")
+    private String sender;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "student_sender_id",
+            referencedColumnName = "student_id",
+            foreignKey = @ForeignKey(name = "fk_appointment_schedules_student_sender"))
+    private Student studentSender;
 
     public AppointmentModality getAppointmentModality(){
         return AppointmentModality.fromCode(appointmentModalityCode);

@@ -1,7 +1,6 @@
-package com.sistemas.dto.student;
+package com.sistemas.dto.appointment_schedule;
 
 import com.sistemas.dto.appointment.AppointmentRequest;
-import com.sistemas.dto.appointment_schedule.AppointmentRequestWithAltSchedule;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AppointmentResponse {
+public class AppointmentSentResponse {
     private Long id;
     private String date;
     private String startTime;

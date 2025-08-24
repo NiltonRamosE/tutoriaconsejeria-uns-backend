@@ -62,7 +62,7 @@ public class AppointmentScheduleMapper {
         }
 
         return AppointmentScheduleSentResponse.builder()
-                .appointmentResponse(appointmentMapper.mapToAppointmentResponse(appointment))
+                .appointmentResponse(appointmentMapper.mapToAppointmentSentResponse(appointment))
                 .senderFullName(senderFullName)
                 .receiverFullName(receiverFullName)
                 .receiverStudentsFullNames(receiverFullNames)

@@ -12,13 +12,14 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScheduleGroupAppointmentRequest implements AppointmentRequest, AppointmentRequestWithAltSchedule {
+public class ScheduleGroupAppointmentRequest implements AppointmentRequest {
     private char appointmentModalityCode;
     private String appointmentMethod;
     private String specificAppointmentMethod;
     private String appointmentReason;
     private String specificAppointmentReason;
     private char typeActivityCode;
+    private Long studentId;
     private List<Long> studentsId;
     private Long instructorId;
     private String altScheduleA;

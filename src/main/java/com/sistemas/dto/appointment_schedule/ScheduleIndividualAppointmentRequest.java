@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScheduleIndividualAppointmentRequest implements AppointmentRequest, AppointmentRequestWithAltSchedule {
+public class ScheduleIndividualAppointmentRequest implements AppointmentRequest {
     private char appointmentModalityCode;
     private String appointmentMethod;
     private String specificAppointmentMethod;

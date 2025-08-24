@@ -7,4 +7,8 @@ public interface AppointmentRequest {
     String getSpecificAppointmentMethod();
     String getSpecificAppointmentReason();
     char getTypeActivityCode();
+    Long getStudentId();
+    String getAltScheduleA();
+    String getAltScheduleB();
+    String getAltScheduleC();
 }

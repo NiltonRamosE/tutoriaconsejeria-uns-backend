@@ -1,9 +1,12 @@
 package com.sistemas.controller;
 
 import com.sistemas.domain.*;
+import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse;
+import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
+import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
+import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
 import com.sistemas.dto.student.*;
 import com.sistemas.mapper.AcademicAssignmentMapper;
-import com.sistemas.mapper.AppointmentMapper;
 import com.sistemas.mapper.AppointmentScheduleMapper;
 import com.sistemas.mapper.StudentMapper;
 import com.sistemas.service.*;
@@ -15,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,13 +32,7 @@ public class StudentController {
     private StudentMapper studentMapper;
 
     @Autowired
-    private InstructorService instructorService;
-
-    @Autowired
     private AppointmentService appointmentService;
-
-    @Autowired
-    private AppointmentMapper appointmentMapper;
 
     @Autowired
     private AppointmentScheduleService appointmentScheduleService;
@@ -119,19 +117,35 @@ public class StudentController {
     }
 
     @GetMapping("/appointments/sent/{id}")
-    public ResponseEntity<List<AppointmentScheduleStudentResponse>> getAppointmentsSent(@PathVariable Long id) {
-        return ResponseEntity.ok(getAppointmentsBySender(id, "student"));
-    }
+    public ResponseEntity<List<AppointmentScheduleSentResponse>> getAppointmentsSent(@PathVariable Long id) {
 
+        List<Appointment> appointments = appointmentService.findByStudentSenderIdAndSender(id, "student");
+
+        List<Long> appointmentIds = appointments.stream()
+                .map(Appointment::getId)
+                .toList();
+
+        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findByAppointmentIdIn(appointmentIds);
+
+        Map<Long, List<AppointmentSchedule>> schedulesGrouped =
+                appointmentScheduleList.stream()
+                        .collect(Collectors.groupingBy(as -> as.getAppointment().getId()));
+
+        List<AppointmentScheduleSentResponse> response = schedulesGrouped.values().stream()
+                .map(appointmentScheduleMapper::mapToAppointmentScheduleSentResponse)
+                .toList();
+
+        return ResponseEntity.ok(response);
+    }
+/*
     @GetMapping("/appointments/received/{id}")
-    public ResponseEntity<List<AppointmentScheduleStudentResponse>> getAppointmentsReceived(@PathVariable Long id) {
-        return ResponseEntity.ok(getAppointmentsBySender(id, "instructor"));
-    }
+    public ResponseEntity<List<AppointmentScheduleReceivedResponse>> getAppointmentsReceived(@PathVariable Long id) {
 
-    private List<AppointmentScheduleStudentResponse> getAppointmentsBySender(Long studentId, String sender) {
-        return appointmentScheduleService.findByStudentIdAndSender(studentId, sender).stream()
-            .map(appointmentScheduleMapper::mapToAppointmentScheduleResponse)
-            .toList();
-    }
+        List<AppointmentScheduleReceivedResponse> appointmentScheduleReceived = appointmentService.findByStudentSenderIdAndSender(id, "instructor").stream()
+                .map(appointmentScheduleMapper::mapToAppointmentScheduleReceivedResponse)
+                .toList();
 
+        return ResponseEntity.ok(appointmentScheduleReceived);
+    }
+*/
 }

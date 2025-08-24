@@ -49,15 +49,13 @@ public class AppointmentFacadeService {
         Student studentFound = studentService.search(request.getStudentId());
 
         Appointment appointmentCreated = appointmentService.create(
-                appointmentMapper.mapToAppointmentCreate(request)
+                appointmentMapper.mapToAppointmentCreate(request, sender)
         );
 
         AppointmentSchedule appointmentSchedule = appointmentScheduleMapper.mapToAppointmentScheduleCreate(
-                request,
                 studentFound,
                 instructorFound,
-                appointmentCreated,
-                sender
+                appointmentCreated
         );
 
         return appointmentScheduleService.create(appointmentSchedule);
@@ -75,16 +73,14 @@ public class AppointmentFacadeService {
                 .toList();
 
         Appointment appointmentCreated = appointmentService.create(
-                appointmentMapper.mapToAppointmentCreate(request)
+                appointmentMapper.mapToAppointmentCreate(request, sender)
         );
 
         return studentsFound.stream()
                 .map(student -> appointmentScheduleMapper.mapToAppointmentScheduleCreate(
-                        request,
                         student,
                         instructorFound,
-                        appointmentCreated,
-                        sender
+                        appointmentCreated
                 ))
                 .map(appointmentScheduleService::create)
                 .toList();

@@ -3,13 +3,12 @@ package com.sistemas.controller;
 import com.sistemas.domain.AcademicAssignment;
 import com.sistemas.domain.AppointmentSchedule;
 import com.sistemas.domain.Instructor;
+import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
 import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
 import com.sistemas.dto.student.AssignedStudentResponse;
 import com.sistemas.mapper.AcademicAssignmentMapper;
-import com.sistemas.mapper.AppointmentMapper;
 import com.sistemas.mapper.AppointmentScheduleMapper;
-import com.sistemas.mapper.StudentMapper;
 import com.sistemas.service.*;
 import com.sistemas.service.implement.AppointmentFacadeService;
 import jakarta.validation.Valid;
@@ -19,6 +18,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/instructor", produces = "application/json")
@@ -35,6 +36,12 @@ public class InstructorController {
 
     @Autowired
     private AcademicAssignmentMapper academicAssignmentMapper;
+
+    @Autowired
+    private AppointmentScheduleService appointmentScheduleService;
+
+    @Autowired
+    private AppointmentScheduleMapper appointmentScheduleMapper;
 
     @PostMapping("")
     public ResponseEntity<Instructor> createInstructor(@Valid @RequestBody Instructor instructor) {
@@ -69,5 +76,19 @@ public class InstructorController {
         return ResponseEntity.ok(appointmentScheduleList);
     }
 
+    @GetMapping("/appointments/sent/{id}")
+    public ResponseEntity<List<AppointmentScheduleSentResponse>> getAppointmentsSent(@PathVariable Long id) {
 
+        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findByInstructorIdAndSender(id);
+
+        Map<Long, List<AppointmentSchedule>> schedulesGrouped =
+                appointmentScheduleList.stream()
+                        .collect(Collectors.groupingBy(as -> as.getAppointment().getId()));
+
+        List<AppointmentScheduleSentResponse> response = schedulesGrouped.values().stream()
+                .map(appointmentScheduleMapper::mapToAppointmentScheduleSentResponse)
+                .toList();
+
+        return ResponseEntity.ok(response);
+    }
 }

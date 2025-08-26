@@ -119,7 +119,7 @@ public class StudentController {
     @GetMapping("/appointments/sent/{id}")
     public ResponseEntity<List<AppointmentScheduleSentResponse>> getAppointmentsSent(@PathVariable Long id) {
 
-        List<Appointment> appointments = appointmentService.findByStudentSenderIdAndSender(id, "student");
+        List<Appointment> appointments = appointmentService.findByStudentSenderId(id);
 
         List<Long> appointmentIds = appointments.stream()
                 .map(Appointment::getId)
@@ -137,15 +137,20 @@ public class StudentController {
 
         return ResponseEntity.ok(response);
     }
-/*
+
     @GetMapping("/appointments/received/{id}")
     public ResponseEntity<List<AppointmentScheduleReceivedResponse>> getAppointmentsReceived(@PathVariable Long id) {
 
-        List<AppointmentScheduleReceivedResponse> appointmentScheduleReceived = appointmentService.findByStudentSenderIdAndSender(id, "instructor").stream()
+        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findAppointmentsForStudentWhereNotSender(id);
+
+        Map<Long, List<AppointmentSchedule>> schedulesGrouped =
+                appointmentScheduleList.stream()
+                        .collect(Collectors.groupingBy(as -> as.getAppointment().getId()));
+
+        List<AppointmentScheduleReceivedResponse> response = schedulesGrouped.values().stream()
                 .map(appointmentScheduleMapper::mapToAppointmentScheduleReceivedResponse)
                 .toList();
 
-        return ResponseEntity.ok(appointmentScheduleReceived);
+        return ResponseEntity.ok(response);
     }
-*/
 }

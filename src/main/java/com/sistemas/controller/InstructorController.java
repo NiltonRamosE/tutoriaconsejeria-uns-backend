@@ -3,6 +3,7 @@ package com.sistemas.controller;
 import com.sistemas.domain.AcademicAssignment;
 import com.sistemas.domain.AppointmentSchedule;
 import com.sistemas.domain.Instructor;
+import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
 import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
@@ -79,7 +80,7 @@ public class InstructorController {
     @GetMapping("/appointments/sent/{id}")
     public ResponseEntity<List<AppointmentScheduleSentResponse>> getAppointmentsSent(@PathVariable Long id) {
 
-        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findByInstructorIdAndSender(id);
+        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findByInstructorIdAndSender(id, "instructor");
 
         Map<Long, List<AppointmentSchedule>> schedulesGrouped =
                 appointmentScheduleList.stream()
@@ -91,4 +92,22 @@ public class InstructorController {
 
         return ResponseEntity.ok(response);
     }
+
+
+    @GetMapping("/appointments/received/{id}")
+    public ResponseEntity<List<AppointmentScheduleReceivedResponse>> getAppointmentsReceived(@PathVariable Long id) {
+
+        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findByInstructorIdAndSender(id, "student");
+
+        Map<Long, List<AppointmentSchedule>> schedulesGrouped =
+                appointmentScheduleList.stream()
+                        .collect(Collectors.groupingBy(as -> as.getAppointment().getId()));
+
+        List<AppointmentScheduleReceivedResponse> response = schedulesGrouped.values().stream()
+                .map(appointmentScheduleMapper::mapToAppointmentScheduleReceivedResponse)
+                .toList();
+
+        return ResponseEntity.ok(response);
+    }
+
 }

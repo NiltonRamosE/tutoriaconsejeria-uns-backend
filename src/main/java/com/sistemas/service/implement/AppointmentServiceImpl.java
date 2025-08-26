@@ -47,7 +47,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<Appointment> findByStudentSenderIdAndSender(Long studentSenderId, String sender) {
-        return appointmentRepository.findByStudentSenderIdAndSender(studentSenderId, sender);
+    public List<Appointment> findByStudentSenderId(Long studentSenderId) {
+        return appointmentRepository.findByStudentSenderId(studentSenderId);
     }
 }

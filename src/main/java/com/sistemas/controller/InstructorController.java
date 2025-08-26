@@ -93,7 +93,6 @@ public class InstructorController {
         return ResponseEntity.ok(response);
     }
 
-
     @GetMapping("/appointments/received/{id}")
     public ResponseEntity<List<AppointmentScheduleReceivedResponse>> getAppointmentsReceived(@PathVariable Long id) {
 

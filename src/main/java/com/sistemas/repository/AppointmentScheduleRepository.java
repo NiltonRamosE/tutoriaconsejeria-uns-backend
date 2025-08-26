@@ -13,8 +13,8 @@ public interface AppointmentScheduleRepository extends JpaRepository<Appointment
         SELECT ac
         FROM AppointmentSchedule ac
         JOIN ac.appointment a
-        WHERE ac.instructor.id = :instructorId AND a.sender = 'instructor'
+        WHERE ac.instructor.id = :instructorId AND a.sender = :sender
     """)
-    List<AppointmentSchedule> findByInstructorIdAndSender(Long instructorId);
+    List<AppointmentSchedule> findByInstructorIdAndSender(Long instructorId, String sender);
 
 }

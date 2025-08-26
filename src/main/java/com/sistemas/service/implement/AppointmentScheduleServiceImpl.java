@@ -51,7 +51,7 @@ public class AppointmentScheduleServiceImpl implements AppointmentScheduleServic
     }
 
     @Override
-    public List<AppointmentSchedule> findByInstructorIdAndSender(Long instructorId) {
-        return appointmentScheduleRepository.findByInstructorIdAndSender(instructorId);
+    public List<AppointmentSchedule> findByInstructorIdAndSender(Long instructorId, String sender) {
+        return appointmentScheduleRepository.findByInstructorIdAndSender(instructorId, sender);
     }
 }

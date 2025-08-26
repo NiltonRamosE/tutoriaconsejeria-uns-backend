@@ -69,6 +69,47 @@ public class AppointmentScheduleMapper {
                 .build();
     }
 
+    public AppointmentScheduleReceivedResponse mapToAppointmentScheduleReceivedResponse(List<AppointmentSchedule> appointmentScheduleList) {
+        if (appointmentScheduleList == null || appointmentScheduleList.isEmpty()) {
+            throw new IllegalArgumentException("La lista de AppointmentSchedule no puede estar vacía");
+        }
+
+        Appointment appointment = appointmentScheduleList.getFirst().getAppointment();
+        boolean isStudentSender = "student".equals(appointment.getSender());
+
+        String senderFullName;
+        String receiverFullName = null;
+        List<String> receiverFullNames = new ArrayList<>();
+
+        if (isStudentSender) {
+            senderFullName = buildStudentFullName(appointment.getStudentSender());
+            receiverFullName = buildInstructorFullName(appointmentScheduleList.getFirst().getInstructor());
+            receiverFullNames = appointmentScheduleList.stream()
+                    .map(as -> buildStudentFullName(as.getStudent()))
+                    .toList();
+
+        } else {
+            senderFullName = buildInstructorFullName(appointmentScheduleList.getFirst().getInstructor());
+
+            if (appointment.getAppointmentModality() == AppointmentModality.INDIVIDUAL) {
+                // Individual → un solo estudiante en este schedule
+                receiverFullName = buildStudentFullName(appointmentScheduleList.getFirst().getStudent());
+                receiverFullNames = List.of(receiverFullName);
+            } else {
+                // Grupal → todos los estudiantes de la lista
+                receiverFullNames = appointmentScheduleList.stream()
+                        .map(as -> buildStudentFullName(as.getStudent()))
+                        .toList();
+            }
+        }
+
+        return AppointmentScheduleReceivedResponse.builder()
+                .appointmentResponse(appointmentMapper.mapToAppointmentReceivedResponse(appointment))
+                .senderFullName(senderFullName)
+                .receiverFullName(receiverFullName)
+                .receiverStudentsFullNames(receiverFullNames)
+                .build();
+    }
 
 
     private String buildStudentFullName(Student student) {

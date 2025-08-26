@@ -3,6 +3,7 @@ package com.sistemas.mapper;
 import com.sistemas.domain.Appointment;
 import com.sistemas.domain.AppointmentMethod;
 import com.sistemas.domain.AppointmentReason;
+import com.sistemas.dto.appointment.AppointmentReceivedResponse;
 import com.sistemas.dto.appointment.AppointmentRequest;
 import com.sistemas.dto.appointment.AppointmentSentResponse;
 import com.sistemas.service.StudentService;
@@ -46,6 +47,25 @@ public class AppointmentMapper {
             .state(appointment.getAppointmentState() != null ? appointment.getAppointmentState().toString() : null)
             .typeActivity(appointment.getTypeActivity() != null ? appointment.getTypeActivity().toString() : null)
             .build();
+    }
+
+    public AppointmentReceivedResponse mapToAppointmentReceivedResponse(Appointment appointment) {
+        return AppointmentReceivedResponse.builder()
+                .id(appointment.getId())
+                .date(appointment.getDate() != null ? appointment.getDate().toString() : null)
+                .startTime(appointment.getStartTime() != null ? appointment.getStartTime().toString() : null)
+                .endTime(appointment.getEndTime() != null ? appointment.getEndTime().toString() : null)
+                .appointmentMethod(appointment.getAppointmentMethod() != null ? appointment.getAppointmentMethod().getCode() : null)
+                .appointmentReason(appointment.getAppointmentReason() != null ? appointment.getAppointmentReason().getCode() : null)
+                .appointmentModality(appointment.getAppointmentModality() != null ? appointment.getAppointmentModality().toString() : null)
+                .specificAppointmentMethod(appointment.getSpecificAppointmentMethod())
+                .specificAppointmentReason(appointment.getSpecificAppointmentReason())
+                .state(appointment.getAppointmentState() != null ? appointment.getAppointmentState().toString() : null)
+                .typeActivity(appointment.getTypeActivity() != null ? appointment.getTypeActivity().toString() : null)
+                .altScheduleA(appointment.getAltScheduleA())
+                .altScheduleB(appointment.getAltScheduleB())
+                .altScheduleC(appointment.getAltScheduleC())
+                .build();
     }
 
     private <E extends Enum<E>> E safeEnumValueOf(Class<E> enumClass, String value) {

@@ -123,27 +123,4 @@ public class AppointmentScheduleMapper {
                 instructor.getPaternalSurname() + " " +
                 instructor.getMaternalSurname()).trim();
     }
-
-/*
-    public AppointmentScheduleReceivedResponse mapToAppointmentScheduleReceivedResponse(AppointmentSchedule appointmentSchedule) {
-
-        boolean isStudentSender = "student".equals(appointmentSchedule.getSender());
-
-        String fullName = isStudentSender
-                ? appointmentSchedule.getStudent().getName() + " " +
-                appointmentSchedule.getStudent().getPaternalSurname() + " " +
-                appointmentSchedule.getStudent().getMaternalSurname()
-                : appointmentSchedule.getInstructor().getName() + " " +
-                appointmentSchedule.getInstructor().getPaternalSurname() + " " +
-                appointmentSchedule.getInstructor().getMaternalSurname();
-
-        return AppointmentScheduleReceivedResponse.builder()
-                .appointmentResponse(appointmentMapper.mapToAppointmentResponse(appointmentSchedule.getAppointment()))
-                .fullName(fullName.trim())
-                .altScheduleA(appointmentSchedule.getAltScheduleA())
-                .altScheduleB(appointmentSchedule.getAltScheduleB())
-                .altScheduleC(appointmentSchedule.getAltScheduleC())
-                .build();
-    }
-*/
 }

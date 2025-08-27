@@ -128,4 +128,13 @@ public class InstructorController {
         return ResponseEntity.ok(appointmentService.update(appointmentFound));
     }
 
+    @PutMapping("/appointments/cancel/{id}")
+    public ResponseEntity<Appointment> putAppointmentCancel(@PathVariable Long id) {
+        Appointment appointmentFound = appointmentService.search(id);
+
+        appointmentFound.setAppointmentState(AppointmentState.CANCELADA);
+
+        return ResponseEntity.ok(appointmentService.update(appointmentFound));
+    }
+
 }

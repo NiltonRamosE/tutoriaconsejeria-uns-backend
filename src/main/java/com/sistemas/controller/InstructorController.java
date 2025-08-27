@@ -1,8 +1,7 @@
 package com.sistemas.controller;
 
-import com.sistemas.domain.AcademicAssignment;
-import com.sistemas.domain.AppointmentSchedule;
-import com.sistemas.domain.Instructor;
+import com.sistemas.domain.*;
+import com.sistemas.dto.appointment.AppointmentConfirmRequest;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
@@ -18,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,6 +28,9 @@ public class InstructorController {
 
     @Autowired
     private InstructorService instructorService;
+
+    @Autowired
+    private AppointmentService appointmentService;
 
     @Autowired
     private AppointmentFacadeService appointmentFacadeService;
@@ -107,6 +110,22 @@ public class InstructorController {
                 .toList();
 
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/appointments/confirm/{id}")
+    public ResponseEntity<Appointment> putAppointmentConfirm(@PathVariable Long id, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
+        Appointment appointmentFound = appointmentService.search(id);
+
+        //El EndTime se calcula de acuerdo al contrato del docente, pero se implementará más adelante.
+
+        LocalDateTime dateTime = LocalDateTime.parse(appointmentConfirmRequest.getChosenDateTime());
+
+        appointmentFound.setDate(dateTime.toLocalDate());
+        appointmentFound.setStartTime(dateTime.toLocalTime());
+        appointmentFound.setEndTime(dateTime.toLocalTime().plusHours(1));
+        appointmentFound.setAppointmentState(AppointmentState.ACEPTADA);
+
+        return ResponseEntity.ok(appointmentService.update(appointmentFound));
     }
 
 }

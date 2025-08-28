@@ -113,7 +113,7 @@ public class InstructorController {
     }
 
     @PutMapping("/appointments/confirm/{id}")
-    public ResponseEntity<Appointment> putAppointmentConfirm(@PathVariable Long id, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
+    public ResponseEntity<Void> putAppointmentConfirm(@PathVariable Long id, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
         Appointment appointmentFound = appointmentService.search(id);
 
         //El EndTime se calcula de acuerdo al contrato del docente, pero se implementará más adelante.
@@ -124,17 +124,18 @@ public class InstructorController {
         appointmentFound.setStartTime(dateTime.toLocalTime());
         appointmentFound.setEndTime(dateTime.toLocalTime().plusHours(1));
         appointmentFound.setAppointmentState(AppointmentState.ACEPTADA);
+        appointmentService.update(appointmentFound);
 
-        return ResponseEntity.ok(appointmentService.update(appointmentFound));
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/appointments/cancel/{id}")
-    public ResponseEntity<Appointment> putAppointmentCancel(@PathVariable Long id) {
+    public ResponseEntity<Void> putAppointmentCancel(@PathVariable Long id) {
         Appointment appointmentFound = appointmentService.search(id);
 
         appointmentFound.setAppointmentState(AppointmentState.CANCELADA);
-
-        return ResponseEntity.ok(appointmentService.update(appointmentFound));
+        appointmentService.update(appointmentFound);
+        return ResponseEntity.noContent().build();
     }
 
 }

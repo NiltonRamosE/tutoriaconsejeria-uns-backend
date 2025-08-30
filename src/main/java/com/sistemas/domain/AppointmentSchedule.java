@@ -42,4 +42,8 @@ public class AppointmentSchedule {
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_appointment_schedules_instructors"))
     private Instructor instructor;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "attendance", nullable = false, length = 13)
+    private AppointmentScheduleAttendance appointmentScheduleAttendance;
 }

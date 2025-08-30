@@ -24,6 +24,7 @@ public class AppointmentScheduleMapper {
             .appointment(appointment)
             .student(student)
             .instructor(instructor)
+            .appointmentScheduleAttendance(AppointmentScheduleAttendance.SIN_CONFIRMAR)
             .build();
     }
 

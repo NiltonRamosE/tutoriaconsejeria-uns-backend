@@ -55,11 +55,9 @@ public class AppointmentFacadeService {
                 appointmentCreated
         );
 
-        AppointmentScheduleAttendance attendance = "student".equals(sender)
-                ? AppointmentScheduleAttendance.CONFIRMADA
-                : AppointmentScheduleAttendance.SIN_CONFIRMAR;
-
-        appointmentSchedule.setAppointmentScheduleAttendance(attendance);
+        if ("student".equals(sender)){
+            appointmentSchedule.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
+        }
 
         return appointmentScheduleService.create(appointmentSchedule);
     }

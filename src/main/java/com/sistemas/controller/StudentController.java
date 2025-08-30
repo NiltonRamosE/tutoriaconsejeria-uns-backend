@@ -115,6 +115,14 @@ public class StudentController {
 
         List<AppointmentSchedule> appointmentScheduleList = appointmentFacadeService.createGroupAppointment(request, "student");
 
+        appointmentScheduleList.stream()
+                .filter(a -> a.getStudent().getId().equals(request.getStudentId()))
+                .findFirst()
+                .ifPresent(a -> {
+                    a.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
+                    appointmentScheduleService.update(a);
+                });
+
         return ResponseEntity.ok(appointmentScheduleList);
     }
 

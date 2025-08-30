@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface AppointmentScheduleRepository extends JpaRepository<AppointmentSchedule, Long> {
+    AppointmentSchedule findByAppointmentId(Long appointmentId);
+
     List<AppointmentSchedule> findByAppointmentIdIn(List<Long> appointmentIds);
 
     @Query("""

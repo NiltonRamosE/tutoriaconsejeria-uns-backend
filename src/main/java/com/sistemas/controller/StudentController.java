@@ -1,6 +1,7 @@
 package com.sistemas.controller;
 
 import com.sistemas.domain.*;
+import com.sistemas.dto.appointment.AppointmentConfirmRequest;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -152,5 +154,37 @@ public class StudentController {
                 .toList();
 
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/appointments/confirm/{id}")
+    public ResponseEntity<Void> putAppointmentConfirm(@PathVariable Long id, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
+        Appointment appointmentFound = appointmentService.search(id);
+
+        //El EndTime se calcula de acuerdo al contrato del docente, pero se implementará más adelante.
+
+        LocalDateTime dateTime = LocalDateTime.parse(appointmentConfirmRequest.getChosenDateTime());
+
+        appointmentFound.setDate(dateTime.toLocalDate());
+        appointmentFound.setStartTime(dateTime.toLocalTime());
+        appointmentFound.setEndTime(dateTime.toLocalTime().plusHours(1));
+        appointmentFound.setAppointmentState(AppointmentState.ACEPTADA);
+        appointmentService.update(appointmentFound);
+
+        if (appointmentFound.getAppointmentModality() == AppointmentModality.INDIVIDUAL){
+            AppointmentSchedule appointmentScheduleIndividual =appointmentScheduleService.findByAppointmentId(id);
+            appointmentScheduleIndividual.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
+            appointmentScheduleService.update(appointmentScheduleIndividual);
+        }
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/appointments/cancel/{id}")
+    public ResponseEntity<Void> putAppointmentCancel(@PathVariable Long id) {
+        Appointment appointmentFound = appointmentService.search(id);
+
+        appointmentFound.setAppointmentState(AppointmentState.CANCELADA);
+        appointmentService.update(appointmentFound);
+        return ResponseEntity.noContent().build();
     }
 }

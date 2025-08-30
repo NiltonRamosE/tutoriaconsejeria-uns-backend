@@ -1,9 +1,6 @@
 package com.sistemas.service.implement;
 
-import com.sistemas.domain.Appointment;
-import com.sistemas.domain.AppointmentSchedule;
-import com.sistemas.domain.Instructor;
-import com.sistemas.domain.Student;
+import com.sistemas.domain.*;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
 import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
 import com.sistemas.mapper.AppointmentMapper;
@@ -57,6 +54,12 @@ public class AppointmentFacadeService {
                 instructorFound,
                 appointmentCreated
         );
+
+        AppointmentScheduleAttendance attendance = "student".equals(sender)
+                ? AppointmentScheduleAttendance.CONFIRMADA
+                : AppointmentScheduleAttendance.SIN_CONFIRMAR;
+
+        appointmentSchedule.setAppointmentScheduleAttendance(attendance);
 
         return appointmentScheduleService.create(appointmentSchedule);
     }

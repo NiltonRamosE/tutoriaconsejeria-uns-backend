@@ -168,8 +168,6 @@ public class StudentController {
     public ResponseEntity<Void> putAppointmentConfirm(@PathVariable Long id, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
         Appointment appointmentFound = appointmentService.search(id);
 
-        //El EndTime se calcula de acuerdo al contrato del docente, pero se implementará más adelante.
-
         LocalDateTime dateTime = LocalDateTime.parse(appointmentConfirmRequest.getChosenDateTime());
 
         appointmentFound.setDate(dateTime.toLocalDate());
@@ -179,20 +177,43 @@ public class StudentController {
         appointmentService.update(appointmentFound);
 
         if (appointmentFound.getAppointmentModality() == AppointmentModality.INDIVIDUAL){
-            AppointmentSchedule appointmentScheduleIndividual =appointmentScheduleService.findByAppointmentId(id);
-            appointmentScheduleIndividual.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
-            appointmentScheduleService.update(appointmentScheduleIndividual);
+            List<AppointmentSchedule> appointmentSchedules = appointmentScheduleService.findByAppointmentId(id);
+
+            if (!appointmentSchedules.isEmpty()) {
+                AppointmentSchedule appointmentScheduleIndividual = appointmentSchedules.getFirst();
+                appointmentScheduleIndividual.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
+                appointmentScheduleService.update(appointmentScheduleIndividual);
+            }
         }
 
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/appointments/cancel/{id}")
-    public ResponseEntity<Void> putAppointmentCancel(@PathVariable Long id) {
-        Appointment appointmentFound = appointmentService.search(id);
+    @PutMapping("/appointments/cancel/{appointmentId}")
+    public ResponseEntity<Void> cancelIndividualAppointment(@PathVariable Long appointmentId) {
+        Appointment appointmentFound = appointmentService.search(appointmentId);
 
         appointmentFound.setAppointmentState(AppointmentState.CANCELADA);
         appointmentService.update(appointmentFound);
+
+        List<AppointmentSchedule> appointmentSchedules = appointmentScheduleService.findByAppointmentId(appointmentId);
+        AppointmentSchedule appointmentScheduleIndividual = appointmentSchedules.getFirst();
+        appointmentScheduleIndividual.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.RECHAZADA);
+        appointmentScheduleService.update(appointmentScheduleIndividual);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/appointments/cancel/{appointmentId}/{studentId}")
+    public ResponseEntity<Void> cancelGroupAppointmentAttendance(@PathVariable Long appointmentId, @PathVariable Long studentId) {
+        List<AppointmentSchedule> appointmentSchedules = appointmentScheduleService.findByAppointmentId(appointmentId);
+        appointmentSchedules.stream()
+                .filter(a -> a.getStudent().getId().equals(studentId))
+                .findFirst()
+                .ifPresent(a -> {
+                    a.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.RECHAZADA);
+                    appointmentScheduleService.update(a);
+                });
         return ResponseEntity.noContent().build();
     }
 }

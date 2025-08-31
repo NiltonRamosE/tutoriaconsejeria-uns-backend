@@ -3,6 +3,7 @@ package com.sistemas.mapper;
 import com.sistemas.domain.*;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
+import com.sistemas.dto.appointment_schedule.StudentAttendanceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,14 +39,11 @@ public class AppointmentScheduleMapper {
 
         String senderFullName;
         String receiverFullName = null;
-        List<String> receiverFullNames = new ArrayList<>();
+        List<StudentAttendanceResponse> receiverStudents = new ArrayList<>();
 
         if (isStudentSender) {
             senderFullName = buildStudentFullName(appointment.getStudentSender());
             receiverFullName = buildInstructorFullName(appointmentScheduleList.getFirst().getInstructor());
-            receiverFullNames = appointmentScheduleList.stream()
-                    .map(as -> buildStudentFullName(as.getStudent()))
-                    .toList();
 
         } else {
             senderFullName = buildInstructorFullName(appointmentScheduleList.getFirst().getInstructor());
@@ -53,20 +51,22 @@ public class AppointmentScheduleMapper {
             if (appointment.getAppointmentModality() == AppointmentModality.INDIVIDUAL) {
                 // Individual → un solo estudiante en este schedule
                 receiverFullName = buildStudentFullName(appointmentScheduleList.getFirst().getStudent());
-                receiverFullNames = List.of(receiverFullName);
-            } else {
-                // Grupal → todos los estudiantes de la lista
-                receiverFullNames = appointmentScheduleList.stream()
-                        .map(as -> buildStudentFullName(as.getStudent()))
-                        .toList();
             }
         }
+
+        receiverStudents = appointmentScheduleList.stream()
+                .map(as -> new StudentAttendanceResponse(
+                        as.getStudent().getId(),
+                        buildStudentFullName(as.getStudent()),
+                        as.getAppointmentScheduleAttendance()
+                ))
+                .toList();
 
         return AppointmentScheduleSentResponse.builder()
                 .appointmentResponse(appointmentMapper.mapToAppointmentSentResponse(appointment))
                 .senderFullName(senderFullName)
                 .receiverFullName(receiverFullName)
-                .receiverStudentsFullNames(receiverFullNames)
+                .receiverStudents(receiverStudents)
                 .build();
     }
 
@@ -80,14 +80,11 @@ public class AppointmentScheduleMapper {
 
         String senderFullName;
         String receiverFullName = null;
-        List<String> receiverFullNames = new ArrayList<>();
+        List<StudentAttendanceResponse> receiverStudents = new ArrayList<>();
 
         if (isStudentSender) {
             senderFullName = buildStudentFullName(appointment.getStudentSender());
             receiverFullName = buildInstructorFullName(appointmentScheduleList.getFirst().getInstructor());
-            receiverFullNames = appointmentScheduleList.stream()
-                    .map(as -> buildStudentFullName(as.getStudent()))
-                    .toList();
 
         } else {
             senderFullName = buildInstructorFullName(appointmentScheduleList.getFirst().getInstructor());
@@ -95,20 +92,22 @@ public class AppointmentScheduleMapper {
             if (appointment.getAppointmentModality() == AppointmentModality.INDIVIDUAL) {
                 // Individual → un solo estudiante en este schedule
                 receiverFullName = buildStudentFullName(appointmentScheduleList.getFirst().getStudent());
-                receiverFullNames = List.of(receiverFullName);
-            } else {
-                // Grupal → todos los estudiantes de la lista
-                receiverFullNames = appointmentScheduleList.stream()
-                        .map(as -> buildStudentFullName(as.getStudent()))
-                        .toList();
             }
         }
+
+        receiverStudents = appointmentScheduleList.stream()
+                .map(as -> new StudentAttendanceResponse(
+                        as.getStudent().getId(),
+                        buildStudentFullName(as.getStudent()),
+                        as.getAppointmentScheduleAttendance()
+                ))
+                .toList();
 
         return AppointmentScheduleReceivedResponse.builder()
                 .appointmentResponse(appointmentMapper.mapToAppointmentReceivedResponse(appointment))
                 .senderFullName(senderFullName)
                 .receiverFullName(receiverFullName)
-                .receiverStudentsFullNames(receiverFullNames)
+                .receiverStudents(receiverStudents)
                 .build();
     }
 

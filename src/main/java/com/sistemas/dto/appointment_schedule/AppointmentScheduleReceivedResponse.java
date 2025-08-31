@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AppointmentScheduleReceivedResponse {
     private AppointmentReceivedResponse appointmentResponse;
-    private List<String> receiverStudentsFullNames;
+    private List<StudentAttendanceResponse> receiverStudents;
     private String senderFullName;
     private String receiverFullName;
 }

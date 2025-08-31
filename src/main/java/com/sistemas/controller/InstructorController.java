@@ -116,8 +116,6 @@ public class InstructorController {
     public ResponseEntity<Void> putAppointmentConfirm(@PathVariable Long id, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
         Appointment appointmentFound = appointmentService.search(id);
 
-        //El EndTime se calcula de acuerdo al contrato del docente, pero se implementará más adelante.
-
         LocalDateTime dateTime = LocalDateTime.parse(appointmentConfirmRequest.getChosenDateTime());
 
         appointmentFound.setDate(dateTime.toLocalDate());
@@ -132,9 +130,16 @@ public class InstructorController {
     @PutMapping("/appointments/cancel/{id}")
     public ResponseEntity<Void> putAppointmentCancel(@PathVariable Long id) {
         Appointment appointmentFound = appointmentService.search(id);
-
         appointmentFound.setAppointmentState(AppointmentState.CANCELADA);
         appointmentService.update(appointmentFound);
+
+        List<AppointmentSchedule> appointmentSchedules = appointmentScheduleService.findByAppointmentId(id);
+
+        appointmentSchedules.forEach(appointmentSchedule -> {
+            appointmentSchedule.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.RECHAZADA);
+            appointmentScheduleService.update(appointmentSchedule);
+        });
+
         return ResponseEntity.noContent().build();
     }
 

@@ -1,6 +1,7 @@
 package com.sistemas.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,4 +47,7 @@ public class AppointmentSchedule {
     @Enumerated(EnumType.STRING)
     @Column(name = "attendance", nullable = false, length = 13)
     private AppointmentScheduleAttendance appointmentScheduleAttendance;
+
+    @Column(length = 25, name = "alt_schedule_selected")
+    private String altScheduleSelected;
 }

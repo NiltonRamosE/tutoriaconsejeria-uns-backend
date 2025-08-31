@@ -126,10 +126,10 @@ public class StudentController {
         return ResponseEntity.ok(appointmentScheduleList);
     }
 
-    @GetMapping("/appointments/sent/{id}")
-    public ResponseEntity<List<AppointmentScheduleSentResponse>> getAppointmentsSent(@PathVariable Long id) {
+    @GetMapping("/appointments/sent/{studentId}")
+    public ResponseEntity<List<AppointmentScheduleSentResponse>> getAppointmentsSent(@PathVariable Long studentId) {
 
-        List<Appointment> appointments = appointmentService.findByStudentSenderId(id);
+        List<Appointment> appointments = appointmentService.findByStudentSenderId(studentId);
 
         List<Long> appointmentIds = appointments.stream()
                 .map(Appointment::getId)
@@ -148,10 +148,10 @@ public class StudentController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/appointments/received/{id}")
-    public ResponseEntity<List<AppointmentScheduleReceivedResponse>> getAppointmentsReceived(@PathVariable Long id) {
+    @GetMapping("/appointments/received/{studentId}")
+    public ResponseEntity<List<AppointmentScheduleReceivedResponse>> getAppointmentsReceived(@PathVariable Long studentId) {
 
-        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findAppointmentsForStudentWhereNotSender(id);
+        List<AppointmentSchedule> appointmentScheduleList = appointmentScheduleService.findAppointmentsForStudentWhereNotSender(studentId);
 
         Map<Long, List<AppointmentSchedule>> schedulesGrouped =
                 appointmentScheduleList.stream()
@@ -164,9 +164,9 @@ public class StudentController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/appointments/confirm/{id}")
-    public ResponseEntity<Void> putAppointmentConfirm(@PathVariable Long id, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
-        Appointment appointmentFound = appointmentService.search(id);
+    @PutMapping("/appointments/confirm/{appointmentId}")
+    public ResponseEntity<Void> confirmIndividualAppointment(@PathVariable Long appointmentId, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
+        Appointment appointmentFound = appointmentService.search(appointmentId);
 
         LocalDateTime dateTime = LocalDateTime.parse(appointmentConfirmRequest.getChosenDateTime());
 
@@ -176,15 +176,29 @@ public class StudentController {
         appointmentFound.setAppointmentState(AppointmentState.ACEPTADA);
         appointmentService.update(appointmentFound);
 
-        if (appointmentFound.getAppointmentModality() == AppointmentModality.INDIVIDUAL){
-            List<AppointmentSchedule> appointmentSchedules = appointmentScheduleService.findByAppointmentId(id);
+        List<AppointmentSchedule> appointmentSchedules = appointmentScheduleService.findByAppointmentId(appointmentId);
 
-            if (!appointmentSchedules.isEmpty()) {
-                AppointmentSchedule appointmentScheduleIndividual = appointmentSchedules.getFirst();
-                appointmentScheduleIndividual.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
-                appointmentScheduleService.update(appointmentScheduleIndividual);
-            }
+        if (!appointmentSchedules.isEmpty()) {
+            AppointmentSchedule appointmentScheduleIndividual = appointmentSchedules.getFirst();
+            appointmentScheduleIndividual.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
+            appointmentScheduleService.update(appointmentScheduleIndividual);
         }
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/appointments/confirm/{appointmentId}/{studentId}")
+    public ResponseEntity<Void> confirmGroupAppointment(@PathVariable Long appointmentId, @PathVariable Long studentId, @Valid @RequestBody AppointmentConfirmRequest appointmentConfirmRequest) {
+        List<AppointmentSchedule> appointmentSchedules = appointmentScheduleService.findByAppointmentId(appointmentId);
+
+        appointmentSchedules.stream()
+                .filter(a -> a.getStudent().getId().equals(studentId))
+                .findFirst()
+                .ifPresent(a -> {
+                    a.setAppointmentScheduleAttendance(AppointmentScheduleAttendance.CONFIRMADA);
+                    a.setAltScheduleSelected(appointmentConfirmRequest.getChosenDateTime());
+                    appointmentScheduleService.update(a);
+                });
 
         return ResponseEntity.noContent().build();
     }

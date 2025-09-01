@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
@@ -15,6 +16,7 @@ import java.util.List;
 public class AppointmentScheduleSentResponse {
     private AppointmentSentResponse appointmentResponse;
     private List<StudentAttendanceResponse> receiverStudents;
+    private Map<String, Long> altScheduleCounts;
     private String senderFullName;
     private String receiverFullName;
 }

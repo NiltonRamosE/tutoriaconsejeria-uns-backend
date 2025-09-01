@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class AppointmentScheduleMapper {
@@ -62,11 +64,19 @@ public class AppointmentScheduleMapper {
                 ))
                 .toList();
 
+        Map<String, Long> altScheduleCounts = appointmentScheduleList.stream()
+                .filter(as -> as.getAltScheduleSelected() != null)
+                .collect(Collectors.groupingBy(
+                        AppointmentSchedule::getAltScheduleSelected,
+                        Collectors.counting()
+                ));
+
         return AppointmentScheduleSentResponse.builder()
                 .appointmentResponse(appointmentMapper.mapToAppointmentSentResponse(appointment))
                 .senderFullName(senderFullName)
                 .receiverFullName(receiverFullName)
                 .receiverStudents(receiverStudents)
+                .altScheduleCounts(altScheduleCounts)
                 .build();
     }
 
@@ -103,11 +113,19 @@ public class AppointmentScheduleMapper {
                 ))
                 .toList();
 
+        Map<String, Long> altScheduleCounts = appointmentScheduleList.stream()
+                .filter(as -> as.getAltScheduleSelected() != null)
+                .collect(Collectors.groupingBy(
+                        AppointmentSchedule::getAltScheduleSelected,
+                        Collectors.counting()
+                ));
+
         return AppointmentScheduleReceivedResponse.builder()
                 .appointmentResponse(appointmentMapper.mapToAppointmentReceivedResponse(appointment))
                 .senderFullName(senderFullName)
                 .receiverFullName(receiverFullName)
                 .receiverStudents(receiverStudents)
+                .altScheduleCounts(altScheduleCounts)
                 .build();
     }
 

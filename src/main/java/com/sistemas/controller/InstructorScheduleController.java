@@ -1,0 +1,48 @@
+package com.sistemas.controller;
+
+import com.sistemas.domain.Instructor;
+import com.sistemas.domain.InstructorSchedule;
+import com.sistemas.dto.instructorSchedule.InstructorScheduleResponse;
+import com.sistemas.mapper.InstructorScheduleMapper;
+import com.sistemas.service.InstructorScheduleService;
+import com.sistemas.service.InstructorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping(path = "/instructor-schedule", produces = "application/json")
+public class InstructorScheduleController {
+    @Autowired
+    private InstructorScheduleService instructorScheduleService;
+
+    @Autowired
+    private InstructorService instructorService;
+
+    @Autowired
+    private InstructorScheduleMapper instructorScheduleMapper;
+
+    @GetMapping("")
+    public ResponseEntity<InstructorScheduleResponse> findInstructorScheduleByInstructor(
+            @RequestParam String emailInstructor) {
+
+        Optional<Instructor> instructorWanted = instructorService.findByInstitutionalEmail(emailInstructor);
+        if (instructorWanted.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Instructor instructor = instructorWanted.get();
+
+        List<InstructorSchedule> instructorSchedules = instructorScheduleService.findByInstructorId(instructor.getId());
+
+        return new ResponseEntity<>(instructorScheduleMapper.mapToInstructorScheduleResponse(instructorSchedules, instructor), HttpStatus.OK);
+    }
+
+}

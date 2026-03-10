@@ -22,7 +22,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654321")
                     .yearsOfTeaching(10)
                     .genderCode('M')
-                    .password("clave0001")
+                    .password("123456789")
                     .homePhoneNumber("043524679")
                     .build());
 
@@ -39,7 +39,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654322")
                     .yearsOfTeaching(7)
                     .genderCode('F')
-                    .password("clave0002")
+                    .password("123456789")
                     .homePhoneNumber("044612345")
                     .build());
 
@@ -56,7 +56,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654323")
                     .yearsOfTeaching(5)
                     .genderCode('M')
-                    .password("clave0003")
+                    .password("123456789")
                     .homePhoneNumber("054735182")
                     .build());
 
@@ -73,7 +73,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654324")
                     .yearsOfTeaching(15)
                     .genderCode('F')
-                    .password("clave0004")
+                    .password("123456789")
                     .homePhoneNumber("064421890")
                     .build());
 
@@ -90,7 +90,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654325")
                     .yearsOfTeaching(2)
                     .genderCode('M')
-                    .password("clave0005")
+                    .password("123456789")
                     .homePhoneNumber("073328145")
                     .build());
 
@@ -107,7 +107,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654326")
                     .yearsOfTeaching(8)
                     .genderCode('F')
-                    .password("clave0006")
+                    .password("123456789")
                     .homePhoneNumber("056439872")
                     .build());
 
@@ -124,7 +124,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654327")
                     .yearsOfTeaching(6)
                     .genderCode('M')
-                    .password("clave0007")
+                    .password("123456789")
                     .homePhoneNumber("041783920")
                     .build());
 
@@ -141,7 +141,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654328")
                     .yearsOfTeaching(12)
                     .genderCode('F')
-                    .password("clave0008")
+                    .password("123456789")
                     .homePhoneNumber("065912384")
                     .build());
 
@@ -158,7 +158,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654329")
                     .yearsOfTeaching(4)
                     .genderCode('M')
-                    .password("clave0009")
+                    .password("123456789")
                     .homePhoneNumber("072345678")
                     .build());
 
@@ -175,7 +175,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654330")
                     .yearsOfTeaching(9)
                     .genderCode('F')
-                    .password("clave0010")
+                    .password("123456789")
                     .homePhoneNumber("048394726")
                     .build());
 
@@ -192,7 +192,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654331")
                     .yearsOfTeaching(11)
                     .genderCode('M')
-                    .password("clave0011")
+                    .password("123456789")
                     .homePhoneNumber("066485293")
                     .build());
 
@@ -209,7 +209,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654332")
                     .yearsOfTeaching(3)
                     .genderCode('M')
-                    .password("clave0012")
+                    .password("123456789")
                     .homePhoneNumber("042871536")
                     .build());
 
@@ -226,7 +226,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654333")
                     .yearsOfTeaching(14)
                     .genderCode('F')
-                    .password("clave0013")
+                    .password("123456789")
                     .homePhoneNumber("047654839")
                     .build());
 
@@ -243,7 +243,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654334")
                     .yearsOfTeaching(6)
                     .genderCode('M')
-                    .password("clave0014")
+                    .password("123456789")
                     .homePhoneNumber("074123654")
                     .build());
 
@@ -260,7 +260,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654335")
                     .yearsOfTeaching(10)
                     .genderCode('F')
-                    .password("clave0015")
+                    .password("123456789")
                     .homePhoneNumber("067398412")
                     .build());
 
@@ -277,7 +277,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654336")
                     .yearsOfTeaching(1)
                     .genderCode('M')
-                    .password("clave0016")
+                    .password("123456789")
                     .homePhoneNumber("045932781")
                     .build());
 
@@ -294,7 +294,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654337")
                     .yearsOfTeaching(13)
                     .genderCode('F')
-                    .password("clave0017")
+                    .password("123456789")
                     .homePhoneNumber("046781245")
                     .build());
 
@@ -311,7 +311,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654338")
                     .yearsOfTeaching(7)
                     .genderCode('M')
-                    .password("clave0018")
+                    .password("123456789")
                     .homePhoneNumber("063823190")
                     .build());
 
@@ -328,7 +328,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654339")
                     .yearsOfTeaching(4)
                     .genderCode('F')
-                    .password("clave0019")
+                    .password("123456789")
                     .homePhoneNumber("049734865")
                     .build());
 
@@ -345,7 +345,7 @@ public class InstructorSeeder {
                     .cellphoneNumber("987654340")
                     .yearsOfTeaching(9)
                     .genderCode('M')
-                    .password("clave0020")
+                    .password("123456789")
                     .homePhoneNumber("049182865")
                     .build());
         };

@@ -14,7 +14,7 @@ public class AdministratorSeeder {
                     .paternalSurname("RAMOS")
                     .maternalSurname("ENCARNACION")
                     .genderCode('M')
-                    .password("123456")
+                    .password("123456789")
                     .build());
         };
     }

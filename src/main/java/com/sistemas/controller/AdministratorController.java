@@ -6,6 +6,8 @@ import com.sistemas.dto.administrator.AdministratorResponse;
 import com.sistemas.dto.administrator.InstructorResponse;
 import com.sistemas.dto.administrator.StudentResponse;
 import com.sistemas.dto.assignment.AssignmentResponse;
+import com.sistemas.dto.instructor.InstructorProfileResponse;
+import com.sistemas.dto.student.StudentProfileResponse;
 import com.sistemas.mapper.AdministratorMapper;
 import com.sistemas.mapper.AssignmentMapper;
 import com.sistemas.mapper.InstructorMapper;
@@ -88,6 +90,32 @@ public class AdministratorController {
             return new ResponseEntity<>(administrator, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(new Administrator(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/view/student/{id}")
+    public ResponseEntity <StudentProfileResponse> getStudentById(@PathVariable("id") Long id ) {
+
+        Student student = studentService.search(id);
+
+        if (student != null) {
+            StudentProfileResponse response = studentMapper.mapToStudentProfileResponse(student);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(new StudentProfileResponse(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/view/instructor/{id}")
+    public ResponseEntity <InstructorProfileResponse> getInstructorById(@PathVariable("id") Long id ) {
+
+        Instructor instructor = instructorService.search(id);
+
+        if (instructor != null) {
+            InstructorProfileResponse response = instructorMapper.mapToInstructorProfileResponse(instructor);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(new InstructorProfileResponse(), HttpStatus.NOT_FOUND);
         }
     }
 

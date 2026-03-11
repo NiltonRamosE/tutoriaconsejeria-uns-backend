@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/auth", produces = "application/json")
+@RequestMapping(path = "/api/auth", produces = "application/json")
 public class AuthController {
 
     @Autowired

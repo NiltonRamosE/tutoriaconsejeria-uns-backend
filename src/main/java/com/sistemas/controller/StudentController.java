@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/student", produces = "application/json")
+@RequestMapping(path = "/api/student", produces = "application/json")
 public class StudentController {
 
     @Autowired

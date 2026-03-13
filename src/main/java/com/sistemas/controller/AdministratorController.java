@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/administrator", produces = "application/json")
+@RequestMapping(path = "/api/administrator", produces = "application/json")
 public class AdministratorController {
 
     @Autowired

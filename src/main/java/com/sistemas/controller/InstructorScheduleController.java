@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/instructor-schedule", produces = "application/json")
+@RequestMapping(path = "/api/instructor-schedule", produces = "application/json")
 public class InstructorScheduleController {
     @Autowired
     private InstructorScheduleService instructorScheduleService;

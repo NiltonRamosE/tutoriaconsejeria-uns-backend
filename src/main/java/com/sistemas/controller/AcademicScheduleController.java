@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/academic-schedule", produces = "application/json")
+@RequestMapping(path = "/api/academic-schedule", produces = "application/json")
 public class AcademicScheduleController {
 
     @Autowired

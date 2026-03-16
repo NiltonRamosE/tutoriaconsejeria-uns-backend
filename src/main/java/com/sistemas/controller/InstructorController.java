@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/instructor", produces = "application/json")
+@RequestMapping(path = "/api/instructor", produces = "application/json")
 public class InstructorController {
 
     @Autowired

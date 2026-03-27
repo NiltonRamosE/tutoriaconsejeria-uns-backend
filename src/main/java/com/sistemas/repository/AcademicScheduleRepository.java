@@ -10,6 +10,8 @@ import java.util.List;
 public interface AcademicScheduleRepository extends JpaRepository<AcademicSchedule, Long> {
     List<AcademicSchedule> findByCycle(Integer cycle);
 
+    List<AcademicSchedule> findByStudentSchedulesStudentId(Long studentId);
+
     @Query(value = """
             WITH StudentAcademicSchedule AS (
                 SELECT acs.start_time, acs.end_time, acs.day

@@ -1,6 +1,7 @@
 package com.sistemas.controller;
 
 import com.sistemas.domain.*;
+import com.sistemas.dto.academic_schedule.AcademicScheduleResponse;
 import com.sistemas.dto.administrator.StudentResponse;
 import com.sistemas.dto.appointment.AppointmentConfirmRequest;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse;
@@ -10,6 +11,7 @@ import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentReques
 import com.sistemas.dto.student.AssignedStudentResponse;
 import com.sistemas.dto.student.StudentProfileResponse;
 import com.sistemas.mapper.AcademicAssignmentMapper;
+import com.sistemas.mapper.AcademicScheduleMapper;
 import com.sistemas.mapper.AppointmentScheduleMapper;
 import com.sistemas.mapper.StudentMapper;
 import com.sistemas.service.*;
@@ -49,6 +51,12 @@ public class InstructorController {
 
     @Autowired
     private AppointmentScheduleMapper appointmentScheduleMapper;
+
+    @Autowired
+    private  AcademicScheduleService academicScheduleService;
+
+    @Autowired
+    private AcademicScheduleMapper academicScheduleMapper;
 
     @PostMapping("")
     public ResponseEntity<Instructor> createInstructor(@Valid @RequestBody Instructor instructor) {
@@ -154,6 +162,13 @@ public class InstructorController {
         });
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/view/student/schedule/{id}")
+    public ResponseEntity<List<AcademicScheduleResponse>> getStudentSchedule(@PathVariable Long id) {
+        List<AcademicScheduleResponse> academicScheduleResponse = academicScheduleService.findByStudentSchedulesStudentId(id).stream()
+                .map(academicSchedule -> academicScheduleMapper.mapToAcademicScheduleResponse(academicSchedule)).toList();
+        return ResponseEntity.ok(academicScheduleResponse);
     }
 
 }

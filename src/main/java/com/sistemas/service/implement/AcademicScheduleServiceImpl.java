@@ -51,6 +51,11 @@ public class AcademicScheduleServiceImpl implements AcademicScheduleService {
     }
 
     @Override
+    public List<AcademicSchedule> findByStudentSchedulesStudentId(Long studentId) {
+        return academicScheduleRepository.findByStudentSchedulesStudentId(studentId);
+    }
+
+    @Override
     public List<Object[]> findAcademicScheduleByStudentAndInstructor(Long studentId, Long instructorId) {
         return academicScheduleRepository.findAcademicScheduleByStudentAndInstructor(studentId, instructorId);
     }

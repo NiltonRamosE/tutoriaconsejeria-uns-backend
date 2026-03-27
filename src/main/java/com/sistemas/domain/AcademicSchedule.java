@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -54,6 +55,9 @@ public class AcademicSchedule {
     @Min(value = 1, message = "El ciclo debe ser al menos 1")
     @Max(value = 10, message = "El ciclo debe ser como máximo 10")
     private Integer cycle;
+
+    @OneToMany(mappedBy = "academicSchedule")
+    private List<StudentSchedule> studentSchedules;
 
     public AcademicScheduleType getAcademicScheduleType(){
         return AcademicScheduleType.fromCode(academicScheduleTypeCode);

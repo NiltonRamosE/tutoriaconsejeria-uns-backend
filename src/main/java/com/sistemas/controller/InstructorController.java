@@ -1,14 +1,17 @@
 package com.sistemas.controller;
 
 import com.sistemas.domain.*;
+import com.sistemas.dto.administrator.StudentResponse;
 import com.sistemas.dto.appointment.AppointmentConfirmRequest;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse;
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
 import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
 import com.sistemas.dto.student.AssignedStudentResponse;
+import com.sistemas.dto.student.StudentProfileResponse;
 import com.sistemas.mapper.AcademicAssignmentMapper;
 import com.sistemas.mapper.AppointmentScheduleMapper;
+import com.sistemas.mapper.StudentMapper;
 import com.sistemas.service.*;
 import com.sistemas.service.implement.AppointmentFacadeService;
 import jakarta.validation.Valid;
@@ -62,6 +65,16 @@ public class InstructorController {
                 .toList();
 
         return new ResponseEntity<>(assignedStudentResponses, HttpStatus.OK);
+    }
+
+    @GetMapping("/list/assigned/{id}")
+    public ResponseEntity<List<StudentResponse>> getListStudentsAssignedByInstructor(@PathVariable("id") Long id) {
+        List<AcademicAssignment> academicAssignments  = academicAssignmentService.findAcademicAssignmentsByInstructorId(id);
+
+        List<StudentResponse> studentResponse = academicAssignments.stream()
+                .map(academicAssignmentMapper::mapToStudentResponse)
+                .toList();
+        return new ResponseEntity<>(studentResponse, HttpStatus.OK);
     }
 
     @PostMapping("/appointment/individual")

@@ -8,12 +8,10 @@ import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
 import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
+import com.sistemas.dto.assessment.AssessmentRequest;
 import com.sistemas.dto.student.AssignedStudentResponse;
 import com.sistemas.dto.student.StudentProfileResponse;
-import com.sistemas.mapper.AcademicAssignmentMapper;
-import com.sistemas.mapper.AcademicScheduleMapper;
-import com.sistemas.mapper.AppointmentScheduleMapper;
-import com.sistemas.mapper.StudentMapper;
+import com.sistemas.mapper.*;
 import com.sistemas.service.*;
 import com.sistemas.service.implement.AppointmentFacadeService;
 import jakarta.validation.Valid;
@@ -57,6 +55,12 @@ public class InstructorController {
 
     @Autowired
     private AcademicScheduleMapper academicScheduleMapper;
+
+    @Autowired
+    private AssessmentService assessmentService;
+
+    @Autowired
+    private AssessmentMapper assessmentMapper;
 
     @PostMapping("")
     public ResponseEntity<Instructor> createInstructor(@Valid @RequestBody Instructor instructor) {
@@ -171,4 +175,9 @@ public class InstructorController {
         return ResponseEntity.ok(academicScheduleResponse);
     }
 
+    @PostMapping("/assessment/student")
+    public ResponseEntity<Assessment> evaluateStudent(@Valid @RequestBody AssessmentRequest assessmentRequest) {
+        Assessment assessment =  assessmentService.create(assessmentMapper.mapToStudentAssessment(assessmentRequest));
+        return ResponseEntity.ok(assessment);
+    }
 }

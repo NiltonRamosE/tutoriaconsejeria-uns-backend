@@ -44,4 +44,12 @@ public class AssessmentServiceImpl implements AssessmentService {
     public void delete(Long id) {
         assessmentRepository.deleteById(id);
     }
+
+
+    @Override
+    public Optional<Assessment> findAssessment(Long studentId, Long instructorId, char type) {
+        return Optional.ofNullable(
+                assessmentRepository.findByStudentIdAndInstructorIdAndTypeActivityCode(studentId, instructorId, type)
+        );
+    }
 }

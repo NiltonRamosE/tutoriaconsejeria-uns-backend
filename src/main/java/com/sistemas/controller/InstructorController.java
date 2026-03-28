@@ -10,7 +10,6 @@ import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
 import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
 import com.sistemas.dto.assessment.AssessmentRequest;
 import com.sistemas.dto.student.AssignedStudentResponse;
-import com.sistemas.dto.student.StudentProfileResponse;
 import com.sistemas.mapper.*;
 import com.sistemas.service.*;
 import com.sistemas.service.implement.AppointmentFacadeService;

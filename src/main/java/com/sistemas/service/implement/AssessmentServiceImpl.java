@@ -17,6 +17,25 @@ public class AssessmentServiceImpl implements AssessmentService {
 
     @Override
     public Assessment create(Assessment assessment) {
+
+        Assessment existingAssessment = assessmentRepository.findByStudentIdAndInstructorIdAndTypeActivityCode(
+                assessment.getStudent().getId(),
+                assessment.getInstructor().getId(),
+                assessment.getTypeActivityCode()
+        );
+
+        if (existingAssessment != null) {
+
+            if (assessment.getStudentAssessment() != null) {
+                existingAssessment.setStudentAssessment(assessment.getStudentAssessment());
+            }
+
+            if (assessment.getInstructorAssessment() != null) {
+                existingAssessment.setInstructorAssessment(assessment.getInstructorAssessment());
+            }
+
+            return assessmentRepository.save(existingAssessment);
+        }
         return assessmentRepository.save(assessment);
     }
 
@@ -47,9 +66,16 @@ public class AssessmentServiceImpl implements AssessmentService {
 
 
     @Override
-    public Optional<Assessment> findAssessment(Long studentId, Long instructorId, char type) {
-        return Optional.ofNullable(
-                assessmentRepository.findByStudentIdAndInstructorIdAndTypeActivityCode(studentId, instructorId, type)
-        );
+    public Optional<Assessment> findAssessment(Long studentId, Long instructorId, char type, boolean isStudentEvaluating) {
+
+        Assessment assessment;
+
+        if (isStudentEvaluating) {
+            assessment = assessmentRepository.findStudentEvaluatedInstructor(studentId, instructorId, type);
+        } else {
+            assessment = assessmentRepository.findInstructorEvaluatedStudent(studentId, instructorId, type);
+        }
+
+        return Optional.ofNullable(assessment);
     }
 }

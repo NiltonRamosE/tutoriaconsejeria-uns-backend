@@ -44,13 +44,15 @@ public class AssessmentController {
     public ResponseEntity<?> isEnabledAssessment(
             @RequestParam Long studentId,
             @RequestParam Long instructorId,
-            @RequestParam String typeActivity
+            @RequestParam String typeActivity,
+            @RequestParam boolean isStudentEvaluating
     ) {
 
         Optional<Assessment> assessment = assessmentService.findAssessment(
                 studentId,
                 instructorId,
-                typeActivity.charAt(0)
+                typeActivity.charAt(0),
+                isStudentEvaluating
         );
 
         if (assessment.isPresent()) {

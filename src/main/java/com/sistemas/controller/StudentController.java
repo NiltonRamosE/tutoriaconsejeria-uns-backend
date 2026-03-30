@@ -6,9 +6,11 @@ import com.sistemas.dto.appointment_schedule.AppointmentScheduleReceivedResponse
 import com.sistemas.dto.appointment_schedule.AppointmentScheduleSentResponse;
 import com.sistemas.dto.appointment_schedule.ScheduleGroupAppointmentRequest;
 import com.sistemas.dto.appointment_schedule.ScheduleIndividualAppointmentRequest;
+import com.sistemas.dto.assessment.AssessmentRequest;
 import com.sistemas.dto.student.*;
 import com.sistemas.mapper.AcademicAssignmentMapper;
 import com.sistemas.mapper.AppointmentScheduleMapper;
+import com.sistemas.mapper.AssessmentMapper;
 import com.sistemas.mapper.StudentMapper;
 import com.sistemas.service.*;
 import com.sistemas.service.implement.AppointmentFacadeService;
@@ -50,6 +52,12 @@ public class StudentController {
 
     @Autowired
     private AppointmentFacadeService appointmentFacadeService;
+
+    @Autowired
+    private AssessmentService assessmentService;
+
+    @Autowired
+    private AssessmentMapper assessmentMapper;
 
     @PostMapping("")
     public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
@@ -229,5 +237,11 @@ public class StudentController {
                     appointmentScheduleService.update(a);
                 });
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/assessment/instructor")
+    public ResponseEntity<Assessment> evaluateInstructor(@Valid @RequestBody AssessmentRequest assessmentRequest) {
+        Assessment assessment =  assessmentService.create(assessmentMapper.mapToInstructorAssessment(assessmentRequest));
+        return ResponseEntity.ok(assessment);
     }
 }

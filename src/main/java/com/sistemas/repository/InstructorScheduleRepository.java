@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface InstructorScheduleRepository extends JpaRepository<InstructorSchedule, Long> {
     List<InstructorSchedule> findByAcademicScheduleId(Long academicScheduleId);
-    List<InstructorSchedule> findByInstructorId(Long instructorId);
+    List<InstructorSchedule> findByInstructorIdAndSemester(Long instructorId, String semester);
 }

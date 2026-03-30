@@ -11,6 +11,7 @@ public interface StudentScheduleRepository extends JpaRepository<StudentSchedule
     @Query("SELECT ss FROM StudentSchedule ss " +
             "JOIN FETCH ss.academicSchedule " +
             "JOIN FETCH ss.student " +
-            "WHERE ss.student.id = :studentId")
-    List<StudentSchedule> findByStudentId(@Param("studentId") Long studentId);
+            "WHERE ss.student.id = :studentId" +
+            " AND ss.semester = :semester")
+    List<StudentSchedule> findByStudentId(@Param("studentId") Long studentId, String semester);
 }

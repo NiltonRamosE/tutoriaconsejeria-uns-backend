@@ -1,5 +1,6 @@
 package com.sistemas.service.implement;
 
+import com.sistemas.AppProperties;
 import com.sistemas.domain.InstructorSchedule;
 import com.sistemas.repository.InstructorScheduleRepository;
 import com.sistemas.service.InstructorScheduleService;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class InstructorScheduleServiceImpl implements InstructorScheduleService {
 
     private final InstructorScheduleRepository instructorScheduleRepository;
+    private final AppProperties appProperties;
 
     @Override
     public InstructorSchedule create(InstructorSchedule instructorSchedule) {
@@ -52,6 +54,6 @@ public class InstructorScheduleServiceImpl implements InstructorScheduleService 
 
     @Override
     public List<InstructorSchedule> findByInstructorId(Long instructorId) {
-        return instructorScheduleRepository.findByInstructorId(instructorId);
+        return instructorScheduleRepository.findByInstructorIdAndSemester(instructorId, appProperties.getSemester());
     }
 }

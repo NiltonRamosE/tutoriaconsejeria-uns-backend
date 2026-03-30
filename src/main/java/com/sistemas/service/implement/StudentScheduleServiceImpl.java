@@ -1,5 +1,6 @@
 package com.sistemas.service.implement;
 
+import com.sistemas.AppProperties;
 import com.sistemas.domain.StudentSchedule;
 import com.sistemas.repository.StudentScheduleRepository;
 import com.sistemas.service.StudentScheduleService;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class StudentScheduleServiceImpl implements StudentScheduleService {
 
     private final StudentScheduleRepository studentScheduleRepository;
+    private final AppProperties appProperties;
 
     @Override
     public StudentSchedule create(StudentSchedule studentSchedule) {
@@ -47,6 +49,6 @@ public class StudentScheduleServiceImpl implements StudentScheduleService {
 
     @Override
     public List<StudentSchedule> findByStudentId(Long studentId) {
-        return studentScheduleRepository.findByStudentId(studentId);
+        return studentScheduleRepository.findByStudentId(studentId, appProperties.getSemester());
     }
 }

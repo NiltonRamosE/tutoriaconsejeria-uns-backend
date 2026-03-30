@@ -43,14 +43,18 @@ public class DatabaseSeeder {
             InstructorSeeder instructorSeeder,
             AcademicScheduleSeeder academicScheduleSeeder,
             InstructorScheduleSeeder instructorScheduleSeeder,
-            StudentScheduleSeeder studentScheduleSeeder) {
+            InstructorScheduleTwoSeeder instructorScheduleTwoSeeder,
+            StudentScheduleSeeder studentScheduleSeeder,
+            StudentScheduleTwoSeeder studentScheduleTwoSeeder) {
         return args -> {
             /*administratorSeeder.initAdministratorTable(administratorService).run(args);
             studentSeeder.initStudentTable(studentService).run(args);
             instructorSeeder.initInstructorTable(instructorService).run(args);
             academicScheduleSeeder.initAcademicScheduleTable(academicScheduleService).run(args);
             instructorScheduleSeeder.initInstructorScheduleTable(instructorScheduleService).run(args);
-            studentScheduleSeeder.initStudentScheduleTable(studentScheduleService).run(args);*/
+            instructorScheduleTwoSeeder.initInstructorTwoScheduleTable(instructorScheduleService).run(args);
+            studentScheduleSeeder.initStudentScheduleTable(studentScheduleService).run(args);
+            studentScheduleTwoSeeder.initStudentTwoScheduleTable(studentScheduleService).run(args);*/
 
         };
     }

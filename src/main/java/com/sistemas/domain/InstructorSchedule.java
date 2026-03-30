@@ -34,4 +34,7 @@ public class InstructorSchedule {
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_instructor_schedules_instructors"))
     private Instructor instructor;
+
+    @Column(length = 7, nullable = false)
+    private String semester;
 }

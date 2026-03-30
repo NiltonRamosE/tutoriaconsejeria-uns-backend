@@ -41,4 +41,7 @@ public class StudentSchedule {
     @Min(value = 1, message = "La condición de matrícula debe ser al menos 1")
     @Max(value = 3, message = "La condición de matrícula debe ser como máximo 3")
     private Integer registrationCondition;
+
+    @Column(length = 7, nullable = false)
+    private String semester;
 }

@@ -1,6 +1,6 @@
 package com.sistemas.domain;
 
-import com.sistemas.domain.vo.questionnaire.AcademicAssessment;
+import com.sistemas.domain.vo.questionnaire.academic_assessment.AcademicAssessment;
 import com.sistemas.domain.vo.questionnaire.GoalAcademicSemester;
 import com.sistemas.domain.vo.questionnaire.PsychopedagogicalAssessment;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
